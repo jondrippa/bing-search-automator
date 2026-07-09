@@ -28,6 +28,7 @@ const MAPPING = {
   "chart.line.uptrend.xyaxis": "trending-up",
   "star.circle.fill": "stars",
   "list.number": "format-list-numbered",
+  "arrow.2.squarepath": "sync",
 } as IconMapping;
 
 /**

@@ -92,6 +92,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="sync"
+        options={{
+          title: "Sync",
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="arrow.2.squarepath" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: "Settings",

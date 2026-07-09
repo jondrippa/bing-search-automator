@@ -1,6 +1,9 @@
 (function () {
   'use strict';
 
+  // Import sync manager
+  importScripts('sync-manager.js');
+
   // Anti-Detection Configuration
   const ANTI_DETECTION_CONFIG = {
     // Randomize search intervals to avoid detection
@@ -152,7 +155,9 @@
           const keyword = state.generatedKeywords[i % state.generatedKeywords.length];
           executeSearch(keyword);
           state.searchCount[state.currentMode]++;
+          state.pointsEarned[state.currentMode] += 5;
           saveState();
+          updateSyncStats();
           notifyPopup({ status: 'searching', count: state.searchCount[state.currentMode], max: maxSearches });
         }
       }, delay * (i - currentCount + 1));
@@ -168,6 +173,7 @@
     state.searchCount[state.currentMode]++;
     state.pointsEarned[state.currentMode] += 5; // Estimate 5 points per search
     saveState();
+    updateSyncStats();
     notifyPopup({ status: 'manual_search', count: state.searchCount[state.currentMode] });
   }
 
@@ -183,10 +189,25 @@
     chrome.runtime.sendMessage({ type: 'stateUpdate', data: { ...state, ...data } }).catch(() => {});
   }
 
+  // Update sync manager with stats
+  function updateSyncStats() {
+    if (typeof syncManager !== 'undefined') {
+      syncManager.updateSearchCount(state.currentMode);
+      syncManager.updatePoints(state.pointsEarned[state.currentMode]);
+    }
+  }
+
   // Listen for messages from popup
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === 'getState') {
       sendResponse(state);
+    } else if (request.type === 'SYNC_DATA_FROM_MOBILE') {
+      // Receive sync data from mobile app
+      if (typeof syncManager !== 'undefined' && request.data) {
+        syncManager.syncData = { ...syncManager.syncData, ...request.data };
+        syncManager.saveSyncData();
+      }
+      sendResponse({ success: true });
     } else if (request.type === 'startAutomatic') {
       state.currentMode = request.mode || 'desktop';
       state.searchCount[state.currentMode] = 0;
