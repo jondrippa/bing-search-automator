@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started Checklist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .checklist {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        
+        .checklist-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2A9D8F;
+            min-width: 40px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .checklist-content {
+            flex: 1;
+        }
+        
+        .checklist-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 6px;
+        }
+        
+        .checklist-description {
+            font-size: 14px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.5;
+        }
+        
+        .summary-box {
+            grid-column: 1 / -1;
+            background: rgba(42, 157, 143, 0.1);
+            border-left: 3px solid #2A9D8F;
+            border-top: 1px solid #E0E0E0;
+            border-bottom: 1px solid #E0E0E0;
+            padding: 16px 20px;
+            margin-top: 12px;
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .summary-box strong {
+            color: #1D2D44;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Getting Started Checklist</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checklist-number">✓</div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Account Setup</div>
+                        <div class="checklist-description">Verify your Bing Rewards account is active and in good standing</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-number">✓</div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Install Extension/App</div>
+                        <div class="checklist-description">Install Edge extension or download Android app from GitHub</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-number">✓</div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Configure Settings</div>
+                        <div class="checklist-description">Set tier, intervals, and enable anti-detection features</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-number">✓</div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Run First Search</div>
+                        <div class="checklist-description">Manually trigger one search to test the tool works</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-number">✓</div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Verify Points</div>
+                        <div class="checklist-description">Check Bing Rewards dashboard to confirm points awarded</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-number">✓</div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Check Activity Log</div>
+                        <div class="checklist-description">Review tool's activity log to see search history</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-number">✓</div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Create Backup Account</div>
+                        <div class="checklist-description">Set up a secondary Microsoft account as a safety measure</div>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checklist-number">✓</div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Review Documentation</div>
+                        <div class="checklist-description">Read USER_MANUAL.md for complete feature guide</div>
+                    </div>
+                </div>
+                
+                <div class="summary-box">
+                    <strong>Ready to Launch:</strong> Once all items are checked, you're ready to enable automatic searches. Monitor your account weekly for any warnings or unusual activity.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Detection: Variable Intervals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            padding-top: 20px;
+        }
+        
+        .comparison-section {
+            flex: 1;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .section-title.without {
+            color: #D32F2F;
+        }
+        
+        .section-title.with {
+            color: #2A9D8F;
+        }
+        
+        .timeline {
+            margin-top: 20px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.5;
+        }
+        
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+        
+        .without .timeline-dot {
+            background: #D32F2F;
+        }
+        
+        .with .timeline-dot {
+            background: #2A9D8F;
+        }
+        
+        .description {
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.6;
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(42, 157, 143, 0.08);
+            border-left: 3px solid #2A9D8F;
+        }
+        
+        .description strong {
+            color: #1D2D44;
+            font-weight: 700;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px;
+            border-left: 3px solid;
+        }
+        
+        .risk-indicator.high {
+            background: rgba(211, 47, 47, 0.1);
+            border-left-color: #D32F2F;
+            color: #D32F2F;
+        }
+        
+        .risk-indicator.low {
+            background: rgba(42, 157, 143, 0.1);
+            border-left-color: #2A9D8F;
+            color: #2A9D8F;
+        }
+        
+        .default-setting {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(42, 157, 143, 0.1);
+            border-left: 3px solid #2A9D8F;
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .default-setting strong {
+            color: #2A9D8F;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Anti-Detection: Variable Intervals</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="comparison-section without">
+                <h3 class="section-title without">Without Protection</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span>Search at 11:00</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span>Search at 11:05 (+5 min)</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span>Search at 11:10 (+5 min)</span>
+                    </div>
+                </div>
+                <div class="risk-indicator high">
+                    ⚠ Pattern looks automated
+                </div>
+                <div class="risk-indicator high">
+                    ⚠ High detection risk
+                </div>
+            </div>
+            
+            <div class="comparison-section with">
+                <h3 class="section-title with">With Protection</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span>Search at 11:00</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span>Search at 11:18 (+18 sec)</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <span>Search at 11:31 (+13 sec)</span>
+                    </div>
+                </div>
+                <div class="risk-indicator low">
+                    ✓ Pattern looks human
+                </div>
+                <div class="risk-indicator low">
+                    ✓ Lower detection risk
+                </div>
+            </div>
+        </div>
+        
+        <div style="padding-left: 200px; padding-right: 200px; padding-top: 20px;">
+            <div class="default-setting">
+                <strong>Default Setting:</strong> 15–32 seconds between searches. Randomized intervals mimic natural human behavior and avoid bot-detection algorithms.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

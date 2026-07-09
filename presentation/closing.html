@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .thank-you-section {
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+        
+        .thank-you-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        
+        .thank-you-text {
+            font-size: 16px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+        
+        .action-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .action-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2A9D8F;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+        
+        .action-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .action-description {
+            font-size: 14px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.5;
+        }
+        
+        .resources-section {
+            max-width: 800px;
+            padding-top: 32px;
+            border-top: 1px solid #2A9D8F;
+        }
+        
+        .resources-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2A9D8F;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        
+        .resources-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .resource-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2A9D8F;
+            text-decoration: none;
+        }
+        
+        .resource-link:before {
+            content: "→ ";
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Questions?</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="thank-you-section">
+                <div class="thank-you-title">Thank You for Reviewing</div>
+                <div class="thank-you-text">
+                    You now have a complete understanding of the Bing Rewards Automator, its powerful capabilities, built-in safety measures, and the risks involved. You're ready to make an informed decision about whether this tool is right for you.
+                </div>
+            </div>
+            
+            <div class="action-items">
+                <div class="action-item">
+                    <div class="action-number">1</div>
+                    <div class="action-title">Get Started</div>
+                    <div class="action-description">Follow the installation guide to set up the Edge extension or Android app</div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-number">2</div>
+                    <div class="action-title">Read the Docs</div>
+                    <div class="action-description">Review USER_MANUAL.md for detailed features and troubleshooting</div>
+                </div>
+                
+                <div class="action-item">
+                    <div class="action-number">3</div>
+                    <div class="action-title">Monitor Account</div>
+                    <div class="action-description">Check your Bing Rewards dashboard weekly for warnings or issues</div>
+                </div>
+            </div>
+            
+            <div class="resources-section">
+                <div class="resources-title">Quick Links</div>
+                <div class="resources-links">
+                    <a href="#" class="resource-link">GitHub Repository</a>
+                    <a href="#" class="resource-link">User Manual</a>
+                    <a href="#" class="resource-link">Bing Rewards</a>
+                    <a href="#" class="resource-link">Microsoft Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

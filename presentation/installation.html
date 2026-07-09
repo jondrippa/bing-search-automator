@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-content: start;
+        }
+        
+        .platform-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .platform-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #2A9D8F;
+            padding-bottom: 12px;
+        }
+        
+        .installation-step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2A9D8F;
+            min-width: 40px;
+            line-height: 1.2;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 6px;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .step-divider {
+            width: 40px;
+            height: 1px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+        
+        .platform-section:nth-child(1) .installation-step:nth-child(4) .step-divider,
+        .platform-section:nth-child(2) .installation-step:nth-child(4) .step-divider {
+            display: none;
+        }
+        
+        .next-steps {
+            grid-column: 1 / -1;
+            background: rgba(42, 157, 143, 0.1);
+            border-top: 1px solid #E0E0E0;
+            border-bottom: 1px solid #E0E0E0;
+            padding: 20px 24px;
+            margin-top: 20px;
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .next-steps strong {
+            color: #1D2D44;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Installation Overview</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="platform-section">
+                <div class="platform-title">Microsoft Edge Extension</div>
+                
+                <div class="installation-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Download Files</div>
+                        <div class="step-description">Clone or download the edge-extension folder from GitHub</div>
+                        <div class="step-divider"></div>
+                    </div>
+                </div>
+                
+                <div class="installation-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Load Extension</div>
+                        <div class="step-description">Open edge://extensions, enable Developer Mode, and click "Load unpacked"</div>
+                        <div class="step-divider"></div>
+                    </div>
+                </div>
+                
+                <div class="installation-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Configure Settings</div>
+                        <div class="step-description">Click the extension icon and adjust tier, intervals, and anti-detection options</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="platform-section">
+                <div class="platform-title">Android Mobile App</div>
+                
+                <div class="installation-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Install Expo Go</div>
+                        <div class="step-description">Download Expo Go from Google Play Store</div>
+                        <div class="step-divider"></div>
+                    </div>
+                </div>
+                
+                <div class="installation-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Scan QR Code</div>
+                        <div class="step-description">Open Expo Go and scan the QR code from the dev server</div>
+                        <div class="step-divider"></div>
+                    </div>
+                </div>
+                
+                <div class="installation-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Configure Settings</div>
+                        <div class="step-description">Tap Settings tab and adjust tier, intervals, and anti-detection options</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <strong>Next Steps:</strong> After installation, proceed to the Getting Started Checklist to ensure proper setup and run your first successful search.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

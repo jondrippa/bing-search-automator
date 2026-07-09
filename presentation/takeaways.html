@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Takeaways</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            align-content: center;
+        }
+        
+        .takeaway {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .takeaway-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2A9D8F;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        
+        .takeaway-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .takeaway-description {
+            font-size: 15px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .takeaway-points {
+            font-size: 14px;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .point {
+            margin-bottom: 8px;
+        }
+        
+        .point:before {
+            content: "— ";
+            color: #2A9D8F;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        
+        .takeaway-divider {
+            width: 40px;
+            height: 1px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Key Takeaways</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="takeaway">
+                <div class="takeaway-number">1</div>
+                <div class="takeaway-title">Powerful Tool</div>
+                <div class="takeaway-description">Automates daily Bing Rewards searches effortlessly across desktop and mobile.</div>
+                <div class="takeaway-points">
+                    <div class="point">Completes daily quota in minutes</div>
+                    <div class="point">Earns up to $50/month (Gold tier)</div>
+                    <div class="point">Works on both PC and Android</div>
+                </div>
+                <div class="takeaway-divider"></div>
+            </div>
+            
+            <div class="takeaway">
+                <div class="takeaway-number">2</div>
+                <div class="takeaway-title">Built-in Safety</div>
+                <div class="takeaway-description">Multiple anti-detection measures protect your account from bot detection.</div>
+                <div class="takeaway-points">
+                    <div class="point">User-agent rotation</div>
+                    <div class="point">Localized searches</div>
+                    <div class="point">Human-like delays</div>
+                </div>
+                <div class="takeaway-divider"></div>
+            </div>
+            
+            <div class="takeaway">
+                <div class="takeaway-number">3</div>
+                <div class="takeaway-title">Account Risk</div>
+                <div class="takeaway-description">Automation violates Bing Rewards terms of service and carries suspension risk.</div>
+                <div class="takeaway-points">
+                    <div class="point">Violates terms of service</div>
+                    <div class="point">Account suspension possible</div>
+                    <div class="point">Use at your own risk</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

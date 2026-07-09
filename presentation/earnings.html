@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earnings Potential</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: #3E5C76;
+            margin-bottom: 24px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 40px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            margin-bottom: 32px;
+        }
+        
+        th {
+            background: rgba(42, 157, 143, 0.1);
+            padding: 16px;
+            text-align: center;
+            font-weight: 700;
+            color: #1D2D44;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        th:first-child {
+            text-align: left;
+        }
+        
+        td {
+            padding: 16px;
+            color: #3E5C76;
+            font-weight: 400;
+            border-bottom: 1px solid #E0E0E0;
+            text-align: center;
+        }
+        
+        td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1D2D44;
+        }
+        
+        tr:last-child td {
+            border-bottom: 1px solid #2A9D8F;
+        }
+        
+        tr.gold-tier td {
+            background: rgba(42, 157, 143, 0.08);
+            font-weight: 600;
+        }
+        
+        tr.gold-tier td:first-child {
+            color: #2A9D8F;
+        }
+        
+        .recommendation-box {
+            background: rgba(42, 157, 143, 0.1);
+            border-left: 3px solid #2A9D8F;
+            padding: 20px 24px;
+            font-size: 15px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .recommendation-box strong {
+            color: #2A9D8F;
+            font-weight: 700;
+        }
+        
+        .highlight-value {
+            font-weight: 700;
+            color: #1D2D44;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Earnings Potential</h1>
+            <div class="divider"></div>
+            <p class="subtitle">How Much Can You Earn?</p>
+        </div>
+        
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tier</th>
+                        <th>Daily Points</th>
+                        <th>Monthly Points</th>
+                        <th>Estimated USD Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Member</td>
+                        <td>25</td>
+                        <td>750</td>
+                        <td>~$7.50</td>
+                    </tr>
+                    <tr>
+                        <td>Silver</td>
+                        <td>50</td>
+                        <td>1,500</td>
+                        <td>~$15.00</td>
+                    </tr>
+                    <tr class="gold-tier">
+                        <td>Gold</td>
+                        <td>160</td>
+                        <td>4,800</td>
+                        <td>~$50.00</td>
+                    </tr>
+                    <tr>
+                        <td>Legacy</td>
+                        <td>250</td>
+                        <td>7,500</td>
+                        <td>~$75.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="recommendation-box">
+                <strong>Gold Tier (Recommended):</strong> Earns <span class="highlight-value">4,800 points per month</span> (~$50 USD value) with only <span class="highlight-value">5–15 minutes</span> of automation per day. Offers the best balance of earnings and effort for most users.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

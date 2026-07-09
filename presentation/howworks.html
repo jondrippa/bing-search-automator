@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: rgba(42, 157, 143, 0.15);
+            border: 2px solid #2A9D8F;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2A9D8F;
+            margin-bottom: 24px;
+        }
+        
+        .step-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 12px;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .step-time {
+            font-size: 12px;
+            font-weight: 700;
+            color: #2A9D8F;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .arrow {
+            font-size: 32px;
+            color: #2A9D8F;
+            font-weight: 700;
+            align-self: center;
+            margin-top: 40px;
+        }
+        
+        .step:last-child .arrow {
+            display: none;
+        }
+        
+        .footer-note {
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #3E5C76;
+            text-align: center;
+            border-top: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">How It Works</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">Install</div>
+                <div class="step-description">Load extension or install APK</div>
+                <div class="step-time">5 minutes</div>
+                <div class="arrow">→</div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Configure</div>
+                <div class="step-description">Set your tier and preferences</div>
+                <div class="step-time">1 minute</div>
+                <div class="arrow">→</div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Automate</div>
+                <div class="step-description">Click "Start Automatic" and earn points</div>
+                <div class="step-time">5–15 minutes</div>
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            The tool handles everything else automatically
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Support</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: #3E5C76;
+            margin-bottom: 24px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 40px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+        
+        th {
+            background: rgba(42, 157, 143, 0.1);
+            padding: 16px;
+            text-align: left;
+            font-weight: 700;
+            color: #1D2D44;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 16px;
+            color: #3E5C76;
+            font-weight: 400;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        tr:last-child td {
+            border-bottom: 1px solid #2A9D8F;
+        }
+        
+        .status-supported {
+            color: #2A9D8F;
+            font-weight: 700;
+        }
+        
+        .status-unsupported {
+            color: #D32F2F;
+            font-weight: 700;
+        }
+        
+        .icon {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Platform Support</h1>
+            <div class="divider"></div>
+            <p class="subtitle">Works Everywhere You Need It</p>
+        </div>
+        
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Minimum Version</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Microsoft Edge</td>
+                        <td>90+</td>
+                        <td><span class="status-supported">✓ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>Windows 10/11</td>
+                        <td>Latest</td>
+                        <td><span class="status-supported">✓ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>macOS</td>
+                        <td>10.15+</td>
+                        <td><span class="status-supported">✓ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>Android</td>
+                        <td>8.0+</td>
+                        <td><span class="status-supported">✓ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>iOS</td>
+                        <td>All</td>
+                        <td><span class="status-unsupported">✗ Not Supported</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

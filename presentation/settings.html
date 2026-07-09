@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 24px; /* reduced from 32 to pull content up */
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            margin-bottom: 8px; /* reduced from 32 to pull footer up */
+        }
+        
+        th {
+            background: rgba(42, 157, 143, 0.1);
+            padding: 16px;
+            text-align: left;
+            font-weight: 700;
+            color: #1D2D44;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 16px;
+            color: #3E5C76;
+            font-weight: 400;
+            border-bottom: 1px solid #E0E0E0;
+            line-height: 1.5;
+        }
+        
+        tr:last-child td {
+            border-bottom: 1px solid #2A9D8F;
+        }
+        
+        .setting-name {
+            font-weight: 600;
+            color: #1D2D44;
+            width: 35%;
+        }
+        
+        .setting-value {
+            width: 30%;
+            font-weight: 600;
+            color: #2A9D8F;
+        }
+        
+        .setting-reason {
+            width: 35%;
+            font-size: 14px;
+        }
+        
+        .footer-note {
+            background: rgba(42, 157, 143, 0.1);
+            border-left: 3px solid #2A9D8F;
+            padding: 10px 16px; /* reduced vertical padding from 20 to 10 */
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .footer-note strong {
+            color: #1D2D44;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Recommended Settings</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Recommended Value</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="setting-name">Tier</td>
+                        <td class="setting-value">Gold</td>
+                        <td class="setting-reason">Highest daily quota (12 PC, 20 Mobile) with manageable automation time</td>
+                    </tr>
+                    <tr>
+                        <td class="setting-name">Min Interval</td>
+                        <td class="setting-value">15 seconds</td>
+                        <td class="setting-reason">Looks natural and human-like without being too slow</td>
+                    </tr>
+                    <tr>
+                        <td class="setting-name">Max Interval</td>
+                        <td class="setting-value">32 seconds</td>
+                        <td class="setting-reason">Randomized delays prevent bot-detection patterns</td>
+                    </tr>
+                    <tr>
+                        <td class="setting-name">User-Agent Rotation</td>
+                        <td class="setting-value">Enabled</td>
+                        <td class="setting-reason">Avoids detection by appearing as different devices</td>
+                    </tr>
+                    <tr>
+                        <td class="setting-name">Localized Searches</td>
+                        <td class="setting-value">Enabled</td>
+                        <td class="setting-reason">Uses your location for natural, relevant queries</td>
+                    </tr>
+                    <tr>
+                        <td class="setting-name">15-min Cooldown</td>
+                        <td class="setting-value">Disabled</td>
+                        <td class="setting-reason">Optional for extra safety; enable if concerned about detection</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="footer-note">
+                <strong>Note:</strong> These settings are optimized for the best balance of safety and performance. The default configuration is recommended for most users. Adjust only if you have specific concerns about account safety.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

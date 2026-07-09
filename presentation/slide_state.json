@@ -1,0 +1,287 @@
+{
+  "project_info": {
+    "title": "Bing Rewards Automator",
+    "created": 1783598195.365,
+    "last_updated": 1783598579.694,
+    "total_slides": 25
+  },
+  "slides": [
+    {
+      "id": "title",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "overview",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "platforms",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "features",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "tiers",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "howworks",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "antidetect_overview",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "antidetect_intervals",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "antidetect_useragent",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "antidetect_localized",
+      "state": "edited",
+      "pageNum": 10
+    },
+    {
+      "id": "antidetect_additional",
+      "state": "edited",
+      "pageNum": 11
+    },
+    {
+      "id": "safety_before",
+      "state": "edited",
+      "pageNum": 12
+    },
+    {
+      "id": "safety_during",
+      "state": "edited",
+      "pageNum": 13
+    },
+    {
+      "id": "safety_redflags",
+      "state": "edited",
+      "pageNum": 14
+    },
+    {
+      "id": "safety_recovery",
+      "state": "edited",
+      "pageNum": 15
+    },
+    {
+      "id": "safety_longterm",
+      "state": "edited",
+      "pageNum": 16
+    },
+    {
+      "id": "settings",
+      "state": "edited",
+      "pageNum": 17
+    },
+    {
+      "id": "earnings",
+      "state": "edited",
+      "pageNum": 18
+    },
+    {
+      "id": "comparison",
+      "state": "edited",
+      "pageNum": 19
+    },
+    {
+      "id": "installation",
+      "state": "edited",
+      "pageNum": 20
+    },
+    {
+      "id": "checklist",
+      "state": "edited",
+      "pageNum": 21
+    },
+    {
+      "id": "takeaways",
+      "state": "edited",
+      "pageNum": 22
+    },
+    {
+      "id": "disclaimer",
+      "state": "edited",
+      "pageNum": 23
+    },
+    {
+      "id": "resources",
+      "state": "edited",
+      "pageNum": 24
+    },
+    {
+      "id": "closing",
+      "state": "edited",
+      "pageNum": 25
+    }
+  ],
+  "outline": [
+    {
+      "id": "title",
+      "title": "Bing Rewards Automator",
+      "summary": "Title slide introducing the dual-platform automation tool for Bing Rewards with built-in anti-detection measures.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "overview",
+      "title": "What is Bing Rewards Automator?",
+      "summary": "Overview of the tool's capabilities: Edge extension, Android app, multi-tier support, and daily point earnings.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "platforms",
+      "title": "Platform Support",
+      "summary": "Supported platforms table showing compatibility with Windows, macOS, and Android devices.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "features",
+      "title": "Core Features",
+      "summary": "Six key features including manual/automatic modes, real-time counters, activity logging, and tier configuration.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "tiers",
+      "title": "Tier Comparison",
+      "summary": "Comparison table of Member, Silver, Gold, and Legacy tiers showing daily searches and points.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "howworks",
+      "title": "How It Works",
+      "summary": "Simple 3-step process: Install, Configure, and Automate.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "antidetect_overview",
+      "title": "Anti-Detection Strategy Overview",
+      "summary": "Introduction to six layers of anti-detection protection built into the tool.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "antidetect_intervals",
+      "title": "Anti-Detection: Variable Intervals",
+      "summary": "Explanation of randomized search spacing to avoid bot detection patterns.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "antidetect_useragent",
+      "title": "Anti-Detection: User-Agent Rotation",
+      "summary": "How the tool rotates browser identifiers to appear as different devices.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "antidetect_localized",
+      "title": "Anti-Detection: Localized Searches",
+      "summary": "Location-based keyword generation to make searches appear natural and relevant.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "antidetect_additional",
+      "title": "Anti-Detection: Additional Measures",
+      "summary": "Human-like scrolling, random delays, and optional cooldown periods.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "safety_before",
+      "title": "Safety: Before You Start",
+      "summary": "Preparation checklist including understanding terms of service and account backup.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "safety_during",
+      "title": "Safety: During Usage",
+      "summary": "Active monitoring practices and best practices for safe tool usage.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "safety_redflags",
+      "title": "Safety: Red Flags to Watch",
+      "summary": "Warning signs that indicate account restriction and when to stop using the tool.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "safety_recovery",
+      "title": "Account Restriction Recovery",
+      "summary": "Step-by-step process for recovering a restricted account.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "safety_longterm",
+      "title": "Long-Term Safety Strategy",
+      "summary": "Sustainable usage guidelines for ongoing safe automation.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "settings",
+      "title": "Recommended Settings",
+      "summary": "Optimized configuration table for best balance of safety and performance.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "earnings",
+      "title": "Earnings Potential",
+      "summary": "Daily and monthly earning projections by tier with Gold tier recommendation.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "comparison",
+      "title": "Manual vs. Automated",
+      "summary": "Comparison of time, effort, consistency, and risk between manual and automated approaches.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "installation",
+      "title": "Installation Overview",
+      "summary": "Quick overview of installation steps for Edge extension and Android app.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "checklist",
+      "title": "Getting Started Checklist",
+      "summary": "Launch checklist to ensure proper setup and first successful search.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "takeaways",
+      "title": "Key Takeaways",
+      "summary": "Three main points: powerful tool, built-in safety, and account risk awareness.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "disclaimer",
+      "title": "Important Disclaimer",
+      "summary": "Legal and safety notice about terms of service violation and account risks.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "resources",
+      "title": "Resources & Support",
+      "summary": "Links to documentation, GitHub, Bing Rewards, and support channels.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "closing",
+      "title": "Questions?",
+      "summary": "Closing slide with thank you message and resource links.",
+      "image_plan": "Use a suitable image if needed"
+    }
+  ]
+}

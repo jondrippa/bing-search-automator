@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Detection: Localized Searches</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 32px;
+        }
+        
+        .section {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+        
+        .section-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2A9D8F;
+            min-width: 40px;
+            line-height: 1.2;
+        }
+        
+        .section-content {
+            flex: 1;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 12px;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.5;
+        }
+        
+        .process-step:before {
+            content: "— ";
+            color: #2A9D8F;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        .example-box {
+            background: rgba(42, 157, 143, 0.08);
+            border-left: 3px solid #2A9D8F;
+            padding: 16px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .example-label {
+            font-weight: 700;
+            color: #2A9D8F;
+            margin-bottom: 8px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .example-item {
+            margin-bottom: 8px;
+            padding-left: 12px;
+        }
+        
+        .example-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .result-highlight {
+            background: rgba(42, 157, 143, 0.1);
+            border-left: 3px solid #2A9D8F;
+            padding: 16px;
+            margin-top: 16px;
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .result-highlight strong {
+            color: #1D2D44;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Anti-Detection: Localized Searches</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="section-number">1</div>
+                <div class="section-content">
+                    <div class="section-title">How It Works</div>
+                    <div class="process-step">Detect your IP address location</div>
+                    <div class="process-step">Generate location-relevant searches</div>
+                    <div class="process-step">Searches appear natural and local</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-number">2</div>
+                <div class="section-content">
+                    <div class="section-title">Example (New York IP)</div>
+                    <div class="example-box">
+                        <div class="example-label">Generated Searches</div>
+                        <div class="example-item">"weather in New York"</div>
+                        <div class="example-item">"best restaurants in NYC"</div>
+                        <div class="example-item">"New York events today"</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-number">3</div>
+                <div class="section-content">
+                    <div class="section-title">Result</div>
+                    <div class="result-highlight">
+                        <strong>Searches look like real user queries</strong> instead of generic automated searches. Natural, location-specific searches are far less likely to trigger bot-detection algorithms.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

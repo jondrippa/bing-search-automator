@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Detection: Additional Measures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 32px;
+        }
+        
+        .measure-block {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        
+        .measure-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2A9D8F;
+            min-width: 50px;
+            line-height: 1.2;
+        }
+        
+        .measure-content {
+            flex: 1;
+        }
+        
+        .measure-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .measure-description {
+            font-size: 15px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .measure-benefit {
+            display: inline-block;
+            background: rgba(42, 157, 143, 0.1);
+            border-left: 3px solid #2A9D8F;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2A9D8F;
+        }
+        
+        .measure-divider {
+            width: 40px;
+            height: 1px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Anti-Detection: Additional Measures</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="measure-block">
+                <div class="measure-number">4</div>
+                <div class="measure-content">
+                    <div class="measure-title">Human-Like Scrolling</div>
+                    <div class="measure-description">Simulates scrolling through search results pages. Real users scroll through results; bots don't. This simulation adds authenticity to your search behavior.</div>
+                    <div class="measure-benefit">Result: Appears as genuine user interaction</div>
+                    <div class="measure-divider"></div>
+                </div>
+            </div>
+            
+            <div class="measure-block">
+                <div class="measure-number">5</div>
+                <div class="measure-content">
+                    <div class="measure-title">Random Request Delays</div>
+                    <div class="measure-description">Adds 500–2000ms random delays between internal requests. Prevents rapid-fire requests that look like bot activity and mimics natural human browsing speed.</div>
+                    <div class="measure-benefit">Result: Prevents bot-like rapid-fire behavior</div>
+                    <div class="measure-divider"></div>
+                </div>
+            </div>
+            
+            <div class="measure-block">
+                <div class="measure-number">6</div>
+                <div class="measure-content">
+                    <div class="measure-title">Optional 15-Minute Cooldowns</div>
+                    <div class="measure-description">Pauses for 15 minutes after every 3 searches (if enabled). Provides extra safety by creating realistic usage patterns that mimic genuine user behavior with natural breaks.</div>
+                    <div class="measure-benefit">Result: Creates realistic usage patterns</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

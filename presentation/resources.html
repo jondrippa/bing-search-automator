@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Support</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container { width: 1280px; min-height: 720px; background: #FDFFFC; display: flex; flex-direction: column; font-family: 'Georgia', serif; }
+        .header { padding-top: 60px; padding-left: 200px; padding-right: 200px; }
+        .title { font-size: 48px; font-weight: 700; color: #1D2D44; margin-bottom: 8px; }
+        .divider { width: 60px; height: 2px; border-top: 1px solid #2A9D8F; border-bottom: 1px solid #2A9D8F; margin-bottom: 32px; }
+        .content { flex: 1; padding-left: 200px; padding-right: 200px; padding-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-content: start; }
+        .resource { display: flex; flex-direction: column; border-left: 1px solid #2A9D8F; padding-left: 20px; }
+        .resource-title { font-size: 18px; font-weight: 700; color: #1D2D44; margin-bottom: 8px; }
+        .resource-description { font-size: 14px; font-weight: 400; color: #3E5C76; line-height: 1.6; margin-bottom: 8px; }
+        .resource-link { font-size: 14px; font-weight: 600; color: #2A9D8F; text-decoration: none; word-break: break-all; }
+        .resource-divider { width: 40px; height: 1px; border-top: 1px solid #2A9D8F; border-bottom: 1px solid #2A9D8F; margin-top: 12px; margin-bottom: 0; }
+        .resource:nth-child(5) .resource-divider, .resource:nth-child(6) .resource-divider { display: none; }
+        .full-width { grid-column: 1 / -1; }
+        .support-box { background: rgba(42, 157, 143, 0.1); border-top: 1px solid #E0E0E0; border-bottom: 1px solid #E0E0E0; padding: 12px 20px; margin-top: 8px; font-size: 15px; color: #3E5C76; line-height: 1.6; }
+        .support-box strong { color: #1D2D44; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Resources & Support</h1>
+            <div class="divider"></div>
+        </div>
+        <div class="content">
+            <div class="resource">
+                <div class="resource-title">GitHub Repository</div>
+                <div class="resource-description">Access the complete source code, contribute, report issues, or fork the project.</div>
+                <div class="resource-link">github.com/jondrippa/bing-search-automator</div>
+                <div class="resource-divider"></div>
+            </div>
+            <div class="resource">
+                <div class="resource-title">User Manual</div>
+                <div class="resource-description">Comprehensive guide covering features, settings, troubleshooting, and best practices.</div>
+                <div class="resource-link">/USER_MANUAL.md in repository</div>
+                <div class="resource-divider"></div>
+            </div>
+            <div class="resource">
+                <div class="resource-title">Quick Start Guide</div>
+                <div class="resource-description">5-minute setup guide for users who want to get started immediately.</div>
+                <div class="resource-link">/QUICK_START.md in repository</div>
+                <div class="resource-divider"></div>
+            </div>
+            <div class="resource">
+                <div class="resource-title">Bing Rewards Dashboard</div>
+                <div class="resource-description">Official Microsoft Bing Rewards account management and points tracking.</div>
+                <div class="resource-link">bing.com/rewards/dashboard</div>
+                <div class="resource-divider"></div>
+            </div>
+            <div class="resource">
+                <div class="resource-title">Microsoft Support</div>
+                <div class="resource-description">Contact Microsoft for account issues, restrictions, or account recovery assistance.</div>
+                <div class="resource-link">support.microsoft.com</div>
+                <div class="resource-divider"></div>
+            </div>
+            <div class="resource">
+                <div class="resource-title">Activity Log</div>
+                <div class="resource-description">View your search history and track automation activity within the app/extension.</div>
+                <div class="resource-link">Available in Settings tab</div>
+            </div>
+            <div class="support-box full-width">
+                <strong>Need Help?</strong> Check the User Manual first for common questions. If you encounter issues, review the Troubleshooting section or contact Microsoft Support for account-related problems.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

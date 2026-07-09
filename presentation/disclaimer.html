@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Disclaimer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #D32F2F;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #D32F2F;
+            border-bottom: 1px solid #D32F2F;
+            margin-bottom: 32px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .disclaimer-section {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .section-icon {
+            font-size: 28px;
+            min-width: 40px;
+            text-align: center;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+        
+        .section-content {
+            flex: 1;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #D32F2F;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 16px;
+        }
+        
+        .section-text {
+            font-size: 15px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .section-items {
+            font-size: 14px;
+            color: #3E5C76;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+        
+        .section-item {
+            margin-bottom: 6px;
+        }
+        
+        .section-item:before {
+            content: "— ";
+            color: #D32F2F;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        
+        .section-divider {
+            width: 40px;
+            height: 1px;
+            border-top: 1px solid #D32F2F;
+            border-bottom: 1px solid #D32F2F;
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+        
+        .acknowledgment-box {
+            margin-top: 20px;
+            padding: 20px 24px;
+            background: rgba(211, 47, 47, 0.1);
+            border-left: 3px solid #D32F2F;
+            border-top: 1px solid #E0E0E0;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 14px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        
+        .acknowledgment-box strong {
+            color: #D32F2F;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Important Disclaimer</h1>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="content">
+            <div class="disclaimer-section">
+                <div class="section-icon">⚠</div>
+                <div class="section-content">
+                    <div class="section-title">Terms of Service Violation</div>
+                    <div class="section-text">This tool automates Bing Rewards searches, which directly violates Microsoft's Terms of Service.</div>
+                    <div class="section-items">
+                        <div class="section-item">Automation is explicitly prohibited</div>
+                        <div class="section-item">Microsoft actively monitors for automated activity</div>
+                    </div>
+                    <div class="section-divider"></div>
+                </div>
+            </div>
+            
+            <div class="disclaimer-section">
+                <div class="section-icon">⚠</div>
+                <div class="section-content">
+                    <div class="section-title">Account Risk</div>
+                    <div class="section-text">Using this tool puts your Microsoft account at significant risk of suspension or permanent ban.</div>
+                    <div class="section-items">
+                        <div class="section-item">Temporary restrictions (days to weeks)</div>
+                        <div class="section-item">Permanent account suspension (no recovery)</div>
+                    </div>
+                    <div class="section-divider"></div>
+                </div>
+            </div>
+            
+            <div class="disclaimer-section">
+                <div class="section-icon">⚠</div>
+                <div class="section-content">
+                    <div class="section-title">Legal Liability</div>
+                    <div class="section-text">The developers and distributors of this tool assume no responsibility for account bans or losses.</div>
+                    <div class="section-items">
+                        <div class="section-item">Use at your own risk and responsibility</div>
+                        <div class="section-item">Any account damage is your sole responsibility</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="padding-left: 200px; padding-right: 200px; padding-top: 0;">
+            <div class="acknowledgment-box">
+                <strong>By using this tool, you acknowledge and accept:</strong> The risks involved, the violation of Microsoft's terms, and full responsibility for any consequences including account suspension or permanent ban.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

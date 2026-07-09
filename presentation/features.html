@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: #3E5C76;
+            margin-bottom: 24px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 40px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            padding-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-content: start;
+        }
+        
+        .feature {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .feature-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2A9D8F;
+            min-width: 50px;
+            line-height: 1.2;
+        }
+        
+        .feature-content {
+            flex: 1;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.5;
+        }
+        
+        .feature-divider {
+            width: 30px;
+            height: 1px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-top: 16px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Core Features</h1>
+            <div class="divider"></div>
+            <p class="subtitle">Everything You Need to Automate Rewards</p>
+        </div>
+        
+        <div class="content">
+            <div class="feature">
+                <div class="feature-number">1</div>
+                <div class="feature-content">
+                    <div class="feature-title">Manual & Automatic Modes</div>
+                    <div class="feature-desc">Single search or full daily quota automation</div>
+                    <div class="feature-divider"></div>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-number">2</div>
+                <div class="feature-content">
+                    <div class="feature-title">Real-Time Counters</div>
+                    <div class="feature-desc">Track points and searches live as they complete</div>
+                    <div class="feature-divider"></div>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-number">3</div>
+                <div class="feature-content">
+                    <div class="feature-title">Activity Logging</div>
+                    <div class="feature-desc">Monitor search history with timestamps and details</div>
+                    <div class="feature-divider"></div>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-number">4</div>
+                <div class="feature-content">
+                    <div class="feature-title">Tier Configuration</div>
+                    <div class="feature-desc">Supports Member, Silver, Gold, and Legacy tiers</div>
+                    <div class="feature-divider"></div>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-number">5</div>
+                <div class="feature-content">
+                    <div class="feature-title">Settings Panel</div>
+                    <div class="feature-desc">Customize behavior and anti-detection measures</div>
+                    <div class="feature-divider"></div>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-number">6</div>
+                <div class="feature-content">
+                    <div class="feature-title">Light Theme UI</div>
+                    <div class="feature-desc">Clean, intuitive interface optimized for usability</div>
+                    <div class="feature-divider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

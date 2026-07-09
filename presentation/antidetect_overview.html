@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Detection Strategy Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        
+        .header {
+            padding-top: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 8px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            border-top: 1px solid #2A9D8F;
+            border-bottom: 1px solid #2A9D8F;
+            margin-bottom: 32px;
+        }
+        
+        .intro {
+            font-size: 16px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-left: 200px;
+            padding-right: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .layers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px 60px;
+        }
+        
+        .layer-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        
+        .layer-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2A9D8F;
+            min-width: 32px;
+            line-height: 1.4;
+        }
+        
+        .layer-text {
+            font-size: 16px;
+            font-weight: 400;
+            color: #3E5C76;
+            line-height: 1.5;
+        }
+        
+        .layer-title {
+            font-weight: 700;
+            color: #1D2D44;
+            margin-bottom: 4px;
+        }
+        
+        .layer-desc {
+            font-size: 14px;
+            color: #3E5C76;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Anti-Detection Strategy</h1>
+            <div class="divider"></div>
+            <p class="intro">The tool implements multiple anti-detection measures to minimize account ban risk:</p>
+        </div>
+        
+        <div class="content">
+            <div class="layers-grid">
+                <div class="layer-item">
+                    <div class="layer-number">1</div>
+                    <div class="layer-text">
+                        <div class="layer-title">Variable Search Intervals</div>
+                        <div class="layer-desc">Randomized delays between searches</div>
+                    </div>
+                </div>
+                
+                <div class="layer-item">
+                    <div class="layer-number">2</div>
+                    <div class="layer-text">
+                        <div class="layer-title">User-Agent Rotation</div>
+                        <div class="layer-desc">Changes browser identifier per search</div>
+                    </div>
+                </div>
+                
+                <div class="layer-item">
+                    <div class="layer-number">3</div>
+                    <div class="layer-text">
+                        <div class="layer-title">Localized Trending Searches</div>
+                        <div class="layer-desc">Location-based keyword generation</div>
+                    </div>
+                </div>
+                
+                <div class="layer-item">
+                    <div class="layer-number">4</div>
+                    <div class="layer-text">
+                        <div class="layer-title">Human-Like Scrolling</div>
+                        <div class="layer-desc">Simulates scrolling through results</div>
+                    </div>
+                </div>
+                
+                <div class="layer-item">
+                    <div class="layer-number">5</div>
+                    <div class="layer-text">
+                        <div class="layer-title">Random Request Delays</div>
+                        <div class="layer-desc">500–2000ms delays between requests</div>
+                    </div>
+                </div>
+                
+                <div class="layer-item">
+                    <div class="layer-number">6</div>
+                    <div class="layer-text">
+                        <div class="layer-title">Optional Cooldown Periods</div>
+                        <div class="layer-desc">15-minute pauses for safety</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

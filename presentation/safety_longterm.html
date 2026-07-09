@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long-Term Safety Strategy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px; /* keep as required */
+            background: #FDFFFC;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Georgia', serif;
+        }
+        .header {
+            padding-top: 60px; /* must keep */
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        .title { font-size: 48px; font-weight: 700; color: #1D2D44; margin-bottom: 8px; }
+        .divider { width: 60px; height: 2px; border-top: 1px solid #2A9D8F; border-bottom: 1px solid #2A9D8F; margin-bottom: 32px; }
+        .content {
+            flex: 1;
+            padding-left: 140px; /* reduced horizontal padding to gain width */
+            padding-right: 140px;
+            padding-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* moved to 3 columns to reduce vertical rows */
+            gap: 24px; /* smaller gaps */
+            align-content: start;
+        }
+        .guideline { display: flex; flex-direction: column; }
+        .guideline-label { font-size: 12px; font-weight: 700; color: #2A9D8F; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .guideline-value { font-size: 24px; font-weight: 700; color: #1D2D44; margin-bottom: 8px; line-height: 1.2; }
+        .guideline-description { font-size: 14px; font-weight: 400; color: #3E5C76; line-height: 1.6; margin-bottom: 12px; }
+        .guideline-divider { width: 40px; height: 1px; border-top: 1px solid #2A9D8F; border-bottom: 1px solid #2A9D8F; margin-bottom: 12px; }
+        .guideline:nth-child(5) .guideline-divider,
+        .guideline:nth-child(6) .guideline-divider { display: none; }
+        .full-width { grid-column: 1 / -1; }
+        .summary-box {
+            background: rgba(42, 157, 143, 0.1);
+            border-top: 1px solid #E0E0E0;
+            border-bottom: 1px solid #E0E0E0;
+            padding: 12px; /* reduced padding */
+            margin-top: 12px; /* reduced margin */
+            font-size: 15px;
+            color: #3E5C76;
+            line-height: 1.6;
+        }
+        .summary-box strong { color: #1D2D44; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="title">Long-Term Safety Strategy</h1>
+            <div class="divider"></div>
+        </div>
+        <div class="content">
+            <div class="guideline">
+                <div class="guideline-label">Frequency</div>
+                <div class="guideline-value">Once Per Day</div>
+                <div class="guideline-description">Use the tool no more than once per day to keep usage natural and low-risk.</div>
+                <div class="guideline-divider"></div>
+            </div>
+            <div class="guideline">
+                <div class="guideline-label">Mix Behaviors</div>
+                <div class="guideline-value">Manual + Automatic</div>
+                <div class="guideline-description">Combine automatic and manual searches so activity looks human.</div>
+                <div class="guideline-divider"></div>
+            </div>
+            <div class="guideline">
+                <div class="guideline-label">Randomize Times</div>
+                <div class="guideline-value">Variable Schedule</div>
+                <div class="guideline-description">Run activities at different times each day rather than a fixed time.</div>
+                <div class="guideline-divider"></div>
+            </div>
+            <div class="guideline">
+                <div class="guideline-label">Monitor Points</div>
+                <div class="guideline-value">Check Weekly</div>
+                <div class="guideline-description">Monitor points weekly; investigate any sudden stops promptly.</div>
+                <div class="guideline-divider"></div>
+            </div>
+            <div class="guideline">
+                <div class="guideline-label">Keep Backups</div>
+                <div class="guideline-value">Secondary Account</div>
+                <div class="guideline-description">Keep a secondary Microsoft account in case the primary is suspended.</div>
+            </div>
+            <div class="guideline">
+                <div class="guideline-label">Stay Informed</div>
+                <div class="guideline-value">Regular Review</div>
+                <div class="guideline-description">Regularly review your account for warnings or unusual activity.</div>
+            </div>
+            <div class="summary-box full-width">
+                <strong>Key Principle:</strong> Sustainable usage balances automation with realistic human behavior. The closer activity mimics real users, the lower the detection risk.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
