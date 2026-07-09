@@ -1,7 +1,8 @@
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, ActivityIndicator } from "react-native";
 import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
 import { useState, useEffect } from "react";
+import { trpc } from "@/lib/trpc";
 
 interface DailyStats {
   date: string;
@@ -23,60 +24,68 @@ export default function StatsScreen() {
   const [totalPoints, setTotalPoints] = useState(0);
   const [totalSearches, setTotalSearches] = useState(0);
   const [averagePointsPerSearch, setAveragePointsPerSearch] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch real metrics from API
+  const { data: metrics } = trpc.metrics.getMetrics.useQuery();
+  const { data: statsData } = trpc.metrics.getDailyStats.useQuery(
+    {
+      startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+      endDate: new Date().toISOString().split("T")[0],
+    },
+    { enabled: !!metrics }
+  );
 
   useEffect(() => {
-    // Generate mock data for the last 7 days
-    const mockStats: DailyStats[] = [];
-    const today = new Date();
-    
-    for (let i = 6; i >= 0; i--) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - i);
-      mockStats.push({
-        date: date.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-        searches: Math.floor(Math.random() * 12) + 3,
-        points: Math.floor(Math.random() * 150) + 30,
-      });
+    if (metrics && statsData) {
+      // Transform database stats to display format
+      const formattedStats: DailyStats[] = statsData.map((stat: any) => ({
+        date: new Date(stat.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+        searches: stat.searches,
+        points: stat.points,
+      }));
+
+      setDailyStats(formattedStats);
+      setTotalPoints(metrics.totalPoints);
+      setTotalSearches(metrics.totalSearches);
+      setAveragePointsPerSearch(
+        metrics.totalSearches > 0 ? Math.round(metrics.totalPoints / metrics.totalSearches) : 0
+      );
+      setLoading(false);
     }
-    
-    setDailyStats(mockStats);
+  }, [metrics, statsData]);
 
-    // Calculate totals
-    const total = mockStats.reduce((sum, day) => sum + day.points, 0);
-    const searches = mockStats.reduce((sum, day) => sum + day.searches, 0);
-    
-    setTotalPoints(total);
-    setTotalSearches(searches);
-    setAveragePointsPerSearch(searches > 0 ? Math.round(total / searches) : 0);
-
-    // Set health metrics
-    setHealthMetrics([
-      {
-        label: "Account Status",
-        value: "Active",
-        status: "good",
-        icon: "✓",
-      },
-      {
-        label: "Detection Risk",
-        value: "Low",
-        status: "good",
-        icon: "✓",
-      },
-      {
-        label: "Daily Quota",
-        value: "5/10",
-        status: "good",
-        icon: "✓",
-      },
-      {
-        label: "Last Search",
-        value: "2 min ago",
-        status: "good",
-        icon: "✓",
-      },
-    ]);
-  }, []);
+  useEffect(() => {
+    // Set health metrics based on real data
+    if (metrics) {
+      setHealthMetrics([
+        {
+          label: "Account Status",
+          value: "Active",
+          status: "good",
+          icon: "✓",
+        },
+        {
+          label: "Daily Quota",
+          value: `${metrics.dailySearches}/${metrics.dailyQuota}`,
+          status: metrics.dailySearches >= metrics.dailyQuota ? "warning" : "good",
+          icon: metrics.dailySearches >= metrics.dailyQuota ? "⚠" : "✓",
+        },
+        {
+          label: "Total Points",
+          value: metrics.totalPoints.toString(),
+          status: "good",
+          icon: "💰",
+        },
+        {
+          label: "Total Searches",
+          value: metrics.totalSearches.toString(),
+          status: "good",
+          icon: "🔍",
+        },
+      ]);
+    }
+  }, [metrics]);
 
   const getStatusColor = (status: "good" | "warning" | "critical") => {
     switch (status) {
@@ -93,6 +102,17 @@ export default function StatsScreen() {
 
   const maxSearches = Math.max(...dailyStats.map((d) => d.searches), 1);
   const maxPoints = Math.max(...dailyStats.map((d) => d.points), 1);
+
+  if (loading) {
+    return (
+      <ScreenContainer className="bg-background">
+        <View className="flex-1 items-center justify-center">
+          <ActivityIndicator size="large" color={colors.primary} />
+          <Text className="text-lg text-muted mt-4">Loading statistics...</Text>
+        </View>
+      </ScreenContainer>
+    );
+  }
 
   return (
     <ScreenContainer className="bg-background">
@@ -288,7 +308,7 @@ export default function StatsScreen() {
                 📈 Performance Summary
               </Text>
               <Text className="text-lg text-muted leading-relaxed">
-                You\\'ve earned {totalPoints} points from {totalSearches} searches over the last 7 days. Your average earning rate is {averagePointsPerSearch} points per search. Keep up the consistent activity to maximize rewards!
+                You've earned {totalPoints} points from {totalSearches} searches over the last 7 days. Your average earning rate is {averagePointsPerSearch} points per search. Keep up the consistent activity to maximize rewards!
               </Text>
             </View>
           </View>

@@ -74,3 +74,15 @@
 - [x] Verify consistent navigation and clear feedback for user interactions.
 - [x] Review and adjust color contrast for optimal readability.
 - [x] Test on various Android devices to ensure proper rendering and address any cramping issues.
+
+
+# Data Fetching and Authentication
+
+- [x] Set up API routes for fetching user metrics (points, searches, opportunities).
+- [x] Implement data fetching hooks for Stats screen.
+- [ ] Implement data fetching hooks for Earn screen.
+- [x] Implement user authentication system (login/logout).
+- [ ] Add user profile management.
+- [x] Replace mock data in Stats screen with real data.
+- [ ] Replace mock data in Earn screen with real data.
+- [ ] Test data fetching and authentication flows.
