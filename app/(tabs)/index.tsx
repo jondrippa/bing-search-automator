@@ -196,7 +196,6 @@ export default function HomeScreen() {
           {/* Activity Indicator */}
           {state.isSearching && (
             <View className="items-center gap-2">
-              <ActivityIndicator size="large" color={colors.primary} />
               <Text className="text-xs text-muted">Processing searches...</Text>
             </View>
           )}
