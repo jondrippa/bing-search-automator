@@ -2,16 +2,44 @@ import { View, Text, Pressable, ScrollView } from "react-native";
 import { useColors } from "@/hooks/use-colors";
 import { useState, useEffect } from "react";
 import { accountHealthMonitor, type HealthFlag } from "@/lib/account-health-monitor";
+import {
+  generateRecoverySuggestion,
+  getRemainingWaitTime,
+  formatWaitTime,
+  getMostCriticalSuggestion,
+  type RecoverySuggestion,
+} from "@/lib/recovery-suggestions";
 
 export function AccountHealthCard() {
   const colors = useColors();
   const [health, setHealth] = useState(accountHealthMonitor.getHealth());
   const [showDetails, setShowDetails] = useState(false);
+  const [suggestions, setSuggestions] = useState<RecoverySuggestion[]>([]);
+  const [mostCritical, setMostCritical] = useState<RecoverySuggestion | null>(null);
+  const [countdownTime, setCountdownTime] = useState<string>("");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setHealth(accountHealthMonitor.getHealth());
-    }, 5000); // Update every 5 seconds
+      const currentHealth = accountHealthMonitor.getHealth();
+      setHealth(currentHealth);
+
+      // Generate recovery suggestions for active flags
+      const activeFlags = currentHealth.flags.filter((f) => !f.resolved);
+      const newSuggestions = activeFlags.map((flag) =>
+        generateRecoverySuggestion(flag.type as any, flag.timestamp)
+      );
+      setSuggestions(newSuggestions);
+
+      // Get most critical suggestion
+      const critical = getMostCriticalSuggestion(newSuggestions);
+      setMostCritical(critical);
+
+      // Update countdown
+      if (critical) {
+        const remaining = getRemainingWaitTime(critical.canResumeAt);
+        setCountdownTime(formatWaitTime(remaining));
+      }
+    }, 1000); // Update every second for countdown
 
     return () => clearInterval(interval);
   }, []);
@@ -139,6 +167,62 @@ export function AccountHealthCard() {
               • {flag.title}
             </Text>
           ))}
+        </View>
+      )}
+
+      {/* Recovery Suggestion with Countdown */}
+      {mostCritical && (
+        <View
+          className="rounded-2xl p-4 gap-3"
+          style={{
+            backgroundColor: colors.surface,
+            borderWidth: 2,
+            borderColor: getSeverityColor(mostCritical.priority),
+          }}
+        >
+          {/* Recovery Header */}
+          <View className="flex-row items-start gap-2">
+            <Text className="text-2xl">{mostCritical.icon}</Text>
+            <View className="flex-1">
+              <Text className="text-sm font-bold text-foreground">
+                {mostCritical.title}
+              </Text>
+              <Text className="text-xs text-muted mt-1">
+                {mostCritical.description}
+              </Text>
+            </View>
+          </View>
+
+          {/* Countdown Timer */}
+          <View
+            className="rounded-lg p-3 items-center gap-1"
+            style={{
+              backgroundColor: getSeverityColor(mostCritical.priority),
+              opacity: 0.2,
+            }}
+          >
+            <Text className="text-xs font-semibold text-foreground">Safe to Resume In</Text>
+            <Text
+              className="text-2xl font-bold font-mono"
+              style={{ color: getSeverityColor(mostCritical.priority) }}
+            >
+              {countdownTime}
+            </Text>
+            <Text className="text-xs text-muted mt-1">
+              {new Date(mostCritical.canResumeAt).toLocaleString()}
+            </Text>
+          </View>
+
+          {/* Actions */}
+          <View className="gap-2">
+            <Text className="text-xs font-semibold text-foreground">Recommended Actions:</Text>
+            {mostCritical.actions.map((action, idx) => (
+              <View key={idx} className="flex-row gap-2">
+                <Text className="text-xs text-muted">•</Text>
+                <Text className="text-xs text-muted flex-1">{action}</Text>
+              </View>
+            ))}
+          </View>
         </View>
       )}
 
