@@ -29,10 +29,11 @@ const schemeFromBundleId = `manus${timestamp}`;
 const env = {
   // App branding - update these values directly (do not use env vars)
   appName: "Bing Rewards Automator",
+  logoUrl: "https://storage.googleapis.com/manus-generated-images/icon_6f0caf48.png",
   appSlug: "bing-rewards-mobile",
   // S3 URL of the app logo - set this to the URL returned by generate_image when creating custom logo
   // Leave empty to use the default icon from assets/images/icon.png
-  logoUrl: "",
+
   scheme: schemeFromBundleId,
   iosBundleId: bundleId,
   androidPackage: bundleId,

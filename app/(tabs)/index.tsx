@@ -112,58 +112,58 @@ export default function HomeScreen() {
   return (
     <ScreenContainer className="bg-background">
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="flex-1 p-6 gap-6">
+          <View className="flex-1 p-8 gap-8">
           {/* Header */}
-          <View className="items-center gap-2">
-            <Text className="text-3xl font-bold text-foreground">Bing Rewards</Text>
-            <Text className="text-sm text-muted">Automator</Text>
+          <View className="items-center gap-3">
+            <Text className="text-4xl font-bold text-foreground">Bing Rewards</Text>
+            <Text className="text-lg text-muted">Automator</Text>
           </View>
 
           {/* Account Health Card */}
           <AccountHealthCard />
 
           {/* Status Card */}
-          <View className="bg-surface rounded-2xl p-6 border border-border gap-3">
+          <View className="bg-surface rounded-2xl p-8 border border-border gap-4">
             <View className="flex-row items-center justify-between">
               <View className="flex-row items-center gap-2">
-                <View className={`w-3 h-3 rounded-full ${state.isSearching ? "bg-success" : "bg-muted"}`} />
-                <Text className="text-sm font-semibold text-foreground">
+                <View className={`w-4 h-4 rounded-full ${state.isSearching ? "bg-success" : "bg-muted"}`} />
+                <Text className="text-base font-semibold text-foreground">
                   {state.isSearching ? "Searching..." : "Ready"}
                 </Text>
               </View>
-              <Text className="text-xs text-muted uppercase tracking-wider">{state.currentMode}</Text>
+              <Text className="text-sm text-muted uppercase tracking-wider">{state.currentMode}</Text>
             </View>
-            <Text className="text-xs text-muted leading-relaxed">
+            <Text className="text-base text-muted leading-relaxed">
               {state.isSearching
                 ? `${currentCount}/${maxSearches} searches completed`
-                : "Click a button below to start searching"}
+                : "Tap a button below to start earning points"}
             </Text>
           </View>
 
           {/* Counters */}
-          <View className="flex-row gap-4">
-            <View className="flex-1 bg-surface rounded-xl p-4 border border-border items-center gap-2">
-              <Text className="text-xs text-muted font-semibold uppercase">Points</Text>
-              <Text className="text-3xl font-bold text-primary">{currentPoints}</Text>
+          <View className="flex-row gap-6">
+            <View className="flex-1 bg-surface rounded-xl p-6 border border-border items-center gap-4">
+              <Text className="text-base text-muted font-semibold uppercase">Points</Text>
+              <Text className="text-4xl font-bold text-primary">{currentPoints}</Text>
             </View>
-            <View className="flex-1 bg-surface rounded-xl p-4 border border-border items-center gap-2">
-              <Text className="text-xs text-muted font-semibold uppercase">Searches</Text>
-              <Text className="text-3xl font-bold text-primary">{currentCount}</Text>
-              <Text className="text-xs text-muted">of {maxSearches}</Text>
+            <View className="flex-1 bg-surface rounded-xl p-6 border border-border items-center gap-4">
+              <Text className="text-base text-muted font-semibold uppercase">Searches</Text>
+              <Text className="text-4xl font-bold text-primary">{currentCount}</Text>
+              <Text className="text-base text-muted">of {maxSearches}</Text>
             </View>
           </View>
 
           {/* Mode Selector */}
-          <View className="flex-row gap-3 bg-surface rounded-xl p-2 border border-border">
+          <View className="flex-row gap-4 bg-surface rounded-xl p-4 border border-border">
             {(["desktop", "mobile"] as const).map((mode) => (
               <TouchableOpacity
                 key={mode}
                 onPress={() => setState(prev => ({ ...prev, currentMode: mode }))}
-                className={`flex-1 py-3 rounded-lg items-center ${
+                className={`flex-1 py-4 rounded-lg items-center ${
                   state.currentMode === mode ? "bg-primary" : "bg-background"
                 }`}
               >
-                <Text className={`text-sm font-semibold ${state.currentMode === mode ? "text-background" : "text-foreground"}`}>
+                <Text className={`text-lg font-semibold ${state.currentMode === mode ? "text-background" : "text-foreground"}`}>
                   {mode === "desktop" ? "PC Search" : "Mobile Search"}
                 </Text>
               </TouchableOpacity>
@@ -171,46 +171,46 @@ export default function HomeScreen() {
           </View>
 
           {/* Control Buttons */}
-          <View className="gap-3">
+          <View className="gap-4">
             {!state.isSearching ? (
               <>
                 <TouchableOpacity
                   onPress={handleStartAutomatic}
-                  className="bg-primary rounded-lg py-4 items-center active:opacity-80"
+                  className="bg-primary rounded-lg py-6 items-center active:opacity-80"
                 >
-                  <Text className="text-base font-semibold text-background">Start Automatic</Text>
+                  <Text className="text-xl font-semibold text-background">Start Automatic</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleStartManual}
-                  className="bg-surface rounded-lg py-4 items-center border border-border active:opacity-80"
+                  className="bg-surface rounded-lg py-6 items-center border border-border active:opacity-80"
                 >
-                  <Text className="text-base font-semibold text-foreground">Start Manual (1)</Text>
+                  <Text className="text-xl font-semibold text-foreground">Start Manual (1)</Text>
                 </TouchableOpacity>
               </>
             ) : (
               <TouchableOpacity
                 onPress={handleStop}
-                className="bg-error rounded-lg py-4 items-center active:opacity-80"
+                className="bg-error rounded-lg py-6 items-center active:opacity-80"
               >
-                <Text className="text-base font-semibold text-background">Stop</Text>
+                <Text className="text-xl font-semibold text-background">Stop</Text>
               </TouchableOpacity>
             )}
           </View>
 
           {/* Activity Indicator */}
           {state.isSearching && (
-            <View className="items-center gap-2">
-              <Text className="text-xs text-muted">Processing searches...</Text>
+            <View className="items-center gap-4">
+              <Text className="text-base text-muted">Processing searches...</Text>
             </View>
           )}
 
           {/* Activity Log */}
           {logs.length > 0 && (
-            <View className="bg-surface rounded-xl p-4 border border-border gap-2">
-              <Text className="text-sm font-semibold text-foreground">Activity Log</Text>
-              <ScrollView style={{ maxHeight: 150 }}>
+            <View className="bg-surface rounded-xl p-6 border border-border gap-3">
+              <Text className="text-xl font-semibold text-foreground">Activity Log</Text>
+              <ScrollView style={{ maxHeight: 250 }}>
                 {logs.map((log, idx) => (
-                  <Text key={idx} className="text-xs text-muted font-mono mb-1">
+                  <Text key={idx} className="text-base text-muted font-mono mb-3">
                     {log}
                   </Text>
                 ))}
@@ -220,17 +220,17 @@ export default function HomeScreen() {
 
           {/* Info Box */}
           <View
-            className="rounded-2xl p-4 gap-2"
+            className="rounded-2xl p-6 gap-3"
             style={{
               backgroundColor: colors.surface,
-              borderLeftWidth: 4,
+              borderLeftWidth: 6,
               borderLeftColor: colors.primary,
             }}
           >
-            <Text className="text-sm font-semibold text-foreground">
+            <Text className="text-base font-semibold text-foreground">
               ⚠️ Anti-Detection Active
             </Text>
-            <Text className="text-sm text-muted leading-relaxed">
+            <Text className="text-base text-muted leading-relaxed">
               This app uses randomized delays and localized searches to avoid account bans. Always use responsibly.
             </Text>
           </View>

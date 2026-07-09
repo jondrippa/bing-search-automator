@@ -29,7 +29,7 @@
 - [ ] Refine UI/UX for both platforms based on design documents.
 - [ ] Conduct thorough testing for functionality and anti-detection.
 - [ ] Prepare documentation for both the extension and the app.
-- [ ] Generate custom app icon and update `app.config.ts`.
+- [x] Generate custom app icon and update `app.config.ts`.
 # Project TODO
 
 ## Microsoft Edge Extension
@@ -60,5 +60,17 @@
 
 - [x] Refine UI/UX for both platforms based on design documents.
 - [x] Prepare documentation for both the extension and the app.
-- [ ] Generate custom app icon and update `app.config.ts`.
+- [x] Generate custom app icon and update `app.config.ts`.
 - [ ] Conduct thorough testing for functionality and anti-detection.
+
+# UI/UX Improvements
+
+- [x] Redesign Earn screen (opportunities.tsx) for improved accessibility and user experience.
+- [x] Redesign Automation screen (automation.tsx) for improved accessibility and user experience.
+- [x] Redesign Sync screen (sync.tsx) for improved accessibility and user experience.
+- [x] Redesign Stats screen (stats.tsx) for improved accessibility and user experience.
+- [x] Implement larger font sizes and increased padding across all screens as per design.md.
+- [x] Ensure all interactive elements have large, easily tappable areas.
+- [x] Verify consistent navigation and clear feedback for user interactions.
+- [x] Review and adjust color contrast for optimal readability.
+- [x] Test on various Android devices to ensure proper rendering and address any cramping issues.

@@ -75,21 +75,21 @@ export default function BackgroundSchedulerScreen() {
   }
 
   return (
-    <ScreenContainer className="p-4">
+    <ScreenContainer className="p-8">
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         {/* Header */}
-        <View className="mb-6">
-          <Text className="text-3xl font-bold text-foreground">Background Scheduler</Text>
-          <Text className="mt-2 text-sm text-muted">
+        <View className="mb-8">
+          <Text className="text-4xl font-bold text-foreground">Background Scheduler</Text>
+          <Text className="mt-3 text-lg text-muted">
             Automate searches and activities at scheduled times
           </Text>
         </View>
 
         {/* Master Toggle */}
-        <View className="mb-6 flex-row items-center justify-between rounded-lg bg-surface p-4">
+        <View className="mb-8 flex-row items-center justify-between rounded-lg bg-surface p-6">
           <View>
-            <Text className="font-semibold text-foreground">Enable Scheduler</Text>
-            <Text className="mt-1 text-xs text-muted">
+            <Text className="text-lg font-semibold text-foreground">Enable Scheduler</Text>
+            <Text className="mt-2 text-sm text-muted">
               {config.enabled ? '🟢 Active' : '🔴 Inactive'}
             </Text>
           </View>
@@ -101,17 +101,17 @@ export default function BackgroundSchedulerScreen() {
         </View>
 
         {/* Scheduled Tasks */}
-        <View className="mb-6">
-          <Text className="mb-3 text-sm font-semibold text-foreground">SCHEDULED TASKS</Text>
+        <View className="mb-8">
+          <Text className="mb-4 text-xl font-semibold text-foreground">SCHEDULED TASKS</Text>
           <View className="gap-3">
             {config.tasks.map((task) => (
-              <View key={task.id} className="rounded-lg bg-surface p-4">
+              <View key={task.id} className="rounded-lg bg-surface p-6">
                 <View className="flex-row items-center justify-between">
                   <View className="flex-1">
-                    <Text className="font-semibold text-foreground capitalize">{task.id}</Text>
-                    <Text className="mt-1 text-sm text-muted">{task.time}</Text>
+                    <Text className="text-lg font-semibold text-foreground capitalize">{task.id}</Text>
+                    <Text className="mt-2 text-base text-muted">{task.time}</Text>
                     {task.lastRun && (
-                      <Text className="mt-1 text-xs text-muted">
+                      <Text className="mt-2 text-sm text-muted">
                         Last run: {new Date(task.lastRun).toLocaleTimeString()}
                       </Text>
                     )}
@@ -124,17 +124,17 @@ export default function BackgroundSchedulerScreen() {
                 </View>
 
                 {/* Mode Selection */}
-                <View className="mt-3 flex-row gap-2">
+                <View className="mt-4 flex-row gap-3">
                   {(['desktop', 'mobile', 'both'] as const).map((mode) => (
                     <TouchableOpacity
                       key={mode}
                       onPress={() => updateTaskMode(task.id, mode)}
-                      className={`flex-1 rounded-lg p-2 ${
+                      className={`flex-1 rounded-lg p-3 ${
                         task.mode === mode ? 'bg-primary/20' : 'bg-muted/10'
                       }`}
                     >
                       <Text
-                        className={`text-center text-xs font-semibold ${
+                        className={`text-center text-sm font-semibold ${
                           task.mode === mode ? 'text-primary' : 'text-muted'
                         }`}
                       >
@@ -149,36 +149,36 @@ export default function BackgroundSchedulerScreen() {
         </View>
 
         {/* Task History */}
-        <View className="mb-6 rounded-lg bg-surface p-4">
-          <Text className="mb-3 text-sm font-semibold text-foreground">RECENT EXECUTIONS</Text>
+        <View className="mb-8 rounded-lg bg-surface p-6">
+          <Text className="mb-4 text-xl font-semibold text-foreground">RECENT EXECUTIONS</Text>
           {taskHistory.length > 0 ? (
-            <View className="gap-2">
+            <View className="gap-3">
               {taskHistory.map((entry, index) => (
-                <View key={index} className="flex-row justify-between border-b border-border pb-2">
+                <View key={index} className="flex-row justify-between border-b border-border pb-3">
                   <View>
-                    <Text className="text-xs font-semibold text-foreground capitalize">
+                    <Text className="text-sm font-semibold text-foreground capitalize">
                       {entry.taskId}
                     </Text>
-                    <Text className="text-xs text-muted">
+                    <Text className="mt-1 text-sm text-muted">
                       {new Date(entry.timestamp).toLocaleTimeString()}
                     </Text>
                   </View>
                   <View className="items-end">
-                    <Text className="text-xs text-success">✓ {entry.status}</Text>
-                    <Text className="text-xs text-muted">{entry.mode}</Text>
+                    <Text className="text-sm text-success">✓ {entry.status}</Text>
+                    <Text className="text-sm text-muted">{entry.mode}</Text>
                   </View>
                 </View>
               ))}
             </View>
           ) : (
-            <Text className="text-sm text-muted">No executions yet</Text>
+            <Text className="text-base text-muted">No executions yet</Text>
           )}
         </View>
 
         {/* Info Card */}
-        <View className="rounded-lg bg-primary/10 p-4">
-          <Text className="text-xs font-semibold text-primary">💡 HOW IT WORKS</Text>
-          <Text className="mt-2 text-sm text-foreground leading-relaxed">
+        <View className="rounded-lg bg-primary/10 p-6">
+          <Text className="text-base font-semibold text-primary">💡 HOW IT WORKS</Text>
+          <Text className="mt-3 text-base text-foreground leading-relaxed">
             Scheduled tasks run automatically at the specified times. The app doesn't need to be open.
             Select desktop, mobile, or both modes for each task. Last run times are tracked for reference.
           </Text>

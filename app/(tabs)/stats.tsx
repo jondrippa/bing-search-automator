@@ -97,132 +97,132 @@ export default function StatsScreen() {
   return (
     <ScreenContainer className="bg-background">
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}>
-        <View className="p-6 gap-6">
+        <View className="p-8 gap-10">
           {/* Header */}
-          <View className="gap-2">
-            <Text className="text-3xl font-bold text-foreground">Statistics</Text>
-            <Text className="text-sm text-muted">Last 7 days overview</Text>
+          <View className="gap-3">
+            <Text className="text-5xl font-bold text-foreground">Statistics</Text>
+            <Text className="text-xl text-muted">Last 7 days overview</Text>
           </View>
 
           {/* Summary Cards */}
-          <View className="gap-3">
+          <View className="gap-4">
             <View
-              className="rounded-2xl p-4 flex-row justify-between items-center"
+              className="rounded-2xl p-8 flex-row justify-between items-center"
               style={{ backgroundColor: colors.surface }}
             >
               <View>
-                <Text className="text-xs text-muted mb-1">Total Points</Text>
-                <Text className="text-2xl font-bold text-foreground">
+                <Text className="text-base text-muted mb-3">Total Points</Text>
+                <Text className="text-5xl font-bold text-foreground">
                   {totalPoints}
                 </Text>
               </View>
-              <Text className="text-3xl">💰</Text>
+              <Text className="text-6xl">💰</Text>
             </View>
 
             <View
-              className="rounded-2xl p-4 flex-row justify-between items-center"
+              className="rounded-2xl p-8 flex-row justify-between items-center"
               style={{ backgroundColor: colors.surface }}
             >
               <View>
-                <Text className="text-xs text-muted mb-1">Total Searches</Text>
-                <Text className="text-2xl font-bold text-foreground">
+                <Text className="text-base text-muted mb-3">Total Searches</Text>
+                <Text className="text-5xl font-bold text-foreground">
                   {totalSearches}
                 </Text>
               </View>
-              <Text className="text-3xl">🔍</Text>
+              <Text className="text-6xl">🔍</Text>
             </View>
 
             <View
-              className="rounded-2xl p-4 flex-row justify-between items-center"
+              className="rounded-2xl p-8 flex-row justify-between items-center"
               style={{ backgroundColor: colors.surface }}
             >
               <View>
-                <Text className="text-xs text-muted mb-1">Avg Points/Search</Text>
-                <Text className="text-2xl font-bold text-foreground">
+                <Text className="text-base text-muted mb-3">Avg Points/Search</Text>
+                <Text className="text-5xl font-bold text-foreground">
                   {averagePointsPerSearch}
                 </Text>
               </View>
-              <Text className="text-3xl">📊</Text>
+              <Text className="text-6xl">📊</Text>
             </View>
           </View>
 
           {/* Daily Activity Chart */}
-          <View className="gap-3">
-            <Text className="text-lg font-semibold text-foreground">
+          <View className="gap-4">
+            <Text className="text-2xl font-semibold text-foreground">
               Daily Search Activity
             </Text>
             <View
-              className="rounded-2xl p-4"
+              className="rounded-2xl p-8"
               style={{ backgroundColor: colors.surface }}
             >
-              <View className="flex-row items-flex-end justify-between h-40 gap-2">
+              <View className="flex-row items-flex-end justify-between h-56 gap-4">
                 {dailyStats.map((day, index) => (
-                  <View key={index} className="flex-1 items-center gap-2">
+                  <View key={index} className="flex-1 items-center gap-4">
                     <View
                       className="w-full rounded-t-lg"
                       style={{
-                        height: (day.searches / maxSearches) * 120,
+                        height: (day.searches / maxSearches) * 180,
                         backgroundColor: colors.primary,
                       }}
                     />
-                    <Text className="text-xs text-muted">{day.date}</Text>
+                    <Text className="text-base text-muted">{day.date}</Text>
                   </View>
                 ))}
               </View>
-              <Text className="text-xs text-muted mt-3">Searches per day</Text>
+              <Text className="text-base text-muted mt-5">Searches per day</Text>
             </View>
           </View>
 
           {/* Points Trend Chart */}
-          <View className="gap-3">
-            <Text className="text-lg font-semibold text-foreground">
+          <View className="gap-4">
+            <Text className="text-2xl font-semibold text-foreground">
               Points Trend
             </Text>
             <View
-              className="rounded-2xl p-4"
+              className="rounded-2xl p-8"
               style={{ backgroundColor: colors.surface }}
             >
-              <View className="flex-row items-flex-end justify-between h-40 gap-2">
+              <View className="flex-row items-flex-end justify-between h-56 gap-4">
                 {dailyStats.map((day, index) => (
-                  <View key={index} className="flex-1 items-center gap-2">
+                  <View key={index} className="flex-1 items-center gap-4">
                     <View
                       className="w-full rounded-t-lg"
                       style={{
-                        height: (day.points / maxPoints) * 120,
+                        height: (day.points / maxPoints) * 180,
                         backgroundColor: colors.success,
                       }}
                     />
-                    <Text className="text-xs text-muted">{day.date}</Text>
+                    <Text className="text-base text-muted">{day.date}</Text>
                   </View>
                 ))}
               </View>
-              <Text className="text-xs text-muted mt-3">Points earned per day</Text>
+              <Text className="text-base text-muted mt-5">Points earned per day</Text>
             </View>
           </View>
 
           {/* Account Health Metrics */}
-          <View className="gap-3">
-            <Text className="text-lg font-semibold text-foreground">
+          <View className="gap-4">
+            <Text className="text-2xl font-semibold text-foreground">
               Account Health
             </Text>
-            <View className="gap-2">
+            <View className="gap-4">
               {healthMetrics.map((metric, index) => (
                 <View
                   key={index}
-                  className="rounded-xl p-4 flex-row justify-between items-center"
+                  className="rounded-2xl p-8 flex-row justify-between items-center"
                   style={{ backgroundColor: colors.surface }}
                 >
                   <View className="flex-1">
-                    <Text className="text-sm text-muted mb-1">{metric.label}</Text>
-                    <Text className="text-base font-semibold text-foreground">
+                    <Text className="text-lg text-muted mb-3">{metric.label}</Text>
+                    <Text className="text-xl font-semibold text-foreground">
                       {metric.value}
                     </Text>
                   </View>
                   <View
-                    className="w-10 h-10 rounded-full items-center justify-center"
+                    className="w-14 h-14 rounded-full items-center justify-center"
                     style={{ backgroundColor: getStatusColor(metric.status) }}
                   >
-                    <Text className="text-white font-bold">{metric.icon}</Text>
+                    <Text className="text-white text-xl font-bold">{metric.icon}</Text>
                   </View>
                 </View>
               ))}
@@ -230,24 +230,24 @@ export default function StatsScreen() {
           </View>
 
           {/* Daily Breakdown Table */}
-          <View className="gap-3">
-            <Text className="text-lg font-semibold text-foreground">
+          <View className="gap-4">
+            <Text className="text-2xl font-semibold text-foreground">
               Daily Breakdown
             </Text>
             <View
-              className="rounded-2xl overflow-hidden"
+              className="rounded-2xl overflow-hidden p-2"
               style={{ backgroundColor: colors.surface }}
             >
               {/* Table Header */}
               <View
-                className="flex-row p-4 border-b"
+                className="flex-row p-6 border-b"
                 style={{ borderBottomColor: colors.border }}
               >
-                <Text className="flex-1 text-xs font-semibold text-muted">Date</Text>
-                <Text className="flex-1 text-xs font-semibold text-muted text-center">
+                <Text className="flex-1 text-lg font-semibold text-muted">Date</Text>
+                <Text className="flex-1 text-lg font-semibold text-muted text-center">
                   Searches
                 </Text>
-                <Text className="flex-1 text-xs font-semibold text-muted text-right">
+                <Text className="flex-1 text-lg font-semibold text-muted text-right">
                   Points
                 </Text>
               </View>
@@ -256,20 +256,20 @@ export default function StatsScreen() {
               {dailyStats.map((day, index) => (
                 <View
                   key={index}
-                  className="flex-row p-4 border-b"
+                  className="flex-row p-6 border-b"
                   style={{
                     borderBottomColor: colors.border,
                     backgroundColor:
                       index % 2 === 0 ? colors.background : colors.surface,
                   }}
                 >
-                  <Text className="flex-1 text-sm text-foreground font-medium">
+                  <Text className="flex-1 text-base text-foreground font-medium">
                     {day.date}
                   </Text>
-                  <Text className="flex-1 text-sm text-foreground text-center">
+                  <Text className="flex-1 text-base text-foreground text-center">
                     {day.searches}
                   </Text>
-                  <Text className="flex-1 text-sm text-foreground text-right font-semibold">
+                  <Text className="flex-1 text-base text-foreground text-right font-semibold">
                     +{day.points}
                   </Text>
                 </View>
@@ -278,17 +278,17 @@ export default function StatsScreen() {
           </View>
 
           {/* Insights Section */}
-          <View className="gap-3">
-            <Text className="text-lg font-semibold text-foreground">Insights</Text>
+          <View className="gap-4">
+            <Text className="text-2xl font-semibold text-foreground">Insights</Text>
             <View
-              className="rounded-2xl p-4 gap-3"
-              style={{ backgroundColor: colors.surface, borderLeftWidth: 4, borderLeftColor: colors.primary }}
+              className="rounded-2xl p-8 gap-5"
+              style={{ backgroundColor: colors.surface, borderLeftWidth: 8, borderLeftColor: colors.primary }}
             >
-              <Text className="text-sm font-semibold text-foreground">
+              <Text className="text-lg font-semibold text-foreground">
                 📈 Performance Summary
               </Text>
-              <Text className="text-sm text-muted leading-relaxed">
-                You've earned {totalPoints} points from {totalSearches} searches over the last 7 days. Your average earning rate is {averagePointsPerSearch} points per search. Keep up the consistent activity to maximize rewards!
+              <Text className="text-lg text-muted leading-relaxed">
+                You\\'ve earned {totalPoints} points from {totalSearches} searches over the last 7 days. Your average earning rate is {averagePointsPerSearch} points per search. Keep up the consistent activity to maximize rewards!
               </Text>
             </View>
           </View>

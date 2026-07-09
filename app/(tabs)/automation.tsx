@@ -80,10 +80,10 @@ export default function AutomationScreen() {
 
   const renderLogItem = ({ item }: { item: ActivityLog }) => (
     <View
-      className="rounded-lg p-3 mb-2 flex-row justify-between items-start"
+      className="rounded-lg p-4 mb-3 flex-row justify-between items-start"
       style={{
         backgroundColor: colors.surface,
-        borderLeftWidth: 3,
+        borderLeftWidth: 4,
         borderLeftColor:
           item.status === "success"
             ? colors.success
@@ -93,13 +93,13 @@ export default function AutomationScreen() {
       }}
     >
       <View className="flex-1">
-        <Text className="text-sm font-semibold text-foreground">{item.activityTitle}</Text>
-        <Text className="text-xs text-muted mt-1">{item.timestamp}</Text>
-        {item.message && <Text className="text-xs text-error mt-1">{item.message}</Text>}
+        <Text className="text-base font-semibold text-foreground">{item.activityTitle}</Text>
+        <Text className="text-sm text-muted mt-2">{item.timestamp}</Text>
+        {item.message && <Text className="text-sm text-error mt-2">{item.message}</Text>}
       </View>
       <View className="items-end">
-        <Text className="text-base font-bold text-success">+{item.pointsEarned}</Text>
-        <Text className="text-xs text-muted capitalize">{item.status}</Text>
+        <Text className="text-xl font-bold text-success">+{item.pointsEarned}</Text>
+        <Text className="text-sm text-muted capitalize">{item.status}</Text>
       </View>
     </View>
   );
@@ -212,10 +212,10 @@ export default function AutomationScreen() {
             <Text className="text-base font-semibold text-foreground">Activity Types</Text>
 
             {/* Quizzes Toggle */}
-            <View className="flex-row justify-between items-center p-3 rounded-lg" style={{ backgroundColor: colors.surface }}>
+            <View className="flex-row justify-between items-center p-4 rounded-lg" style={{ backgroundColor: colors.surface }}>
               <View className="flex-1">
-                <Text className="text-sm font-semibold text-foreground">🧠 Quizzes</Text>
-                <Text className="text-xs text-muted">Auto-complete quizzes</Text>
+                <Text className="text-base font-semibold text-foreground">🧠 Quizzes</Text>
+                <Text className="text-sm text-muted">Auto-complete quizzes</Text>
               </View>
               <Switch
                 value={config.autoCompleteQuizzes}
@@ -226,10 +226,10 @@ export default function AutomationScreen() {
             </View>
 
             {/* Surveys Toggle */}
-            <View className="flex-row justify-between items-center p-3 rounded-lg" style={{ backgroundColor: colors.surface }}>
+            <View className="flex-row justify-between items-center p-4 rounded-lg" style={{ backgroundColor: colors.surface }}>
               <View className="flex-1">
-                <Text className="text-sm font-semibold text-foreground">📋 Surveys</Text>
-                <Text className="text-xs text-muted">Auto-complete surveys</Text>
+                <Text className="text-base font-semibold text-foreground">📋 Surveys</Text>
+                <Text className="text-sm text-muted">Auto-complete surveys</Text>
               </View>
               <Switch
                 value={config.autoCompleteSurveys}
@@ -240,10 +240,10 @@ export default function AutomationScreen() {
             </View>
 
             {/* Daily Set Toggle */}
-            <View className="flex-row justify-between items-center p-3 rounded-lg" style={{ backgroundColor: colors.surface }}>
+            <View className="flex-row justify-between items-center p-4 rounded-lg" style={{ backgroundColor: colors.surface }}>
               <View className="flex-1">
-                <Text className="text-sm font-semibold text-foreground">✨ Daily Set</Text>
-                <Text className="text-xs text-muted">Auto-complete daily tasks</Text>
+                <Text className="text-base font-semibold text-foreground">✨ Daily Set</Text>
+                <Text className="text-sm text-muted">Auto-complete daily tasks</Text>
               </View>
               <Switch
                 value={config.autoCompleteDailySet}
@@ -254,10 +254,10 @@ export default function AutomationScreen() {
             </View>
 
             {/* Stop on Error Toggle */}
-            <View className="flex-row justify-between items-center p-3 rounded-lg" style={{ backgroundColor: colors.surface }}>
+            <View className="flex-row justify-between items-center p-4 rounded-lg" style={{ backgroundColor: colors.surface }}>
               <View className="flex-1">
-                <Text className="text-sm font-semibold text-foreground">⚠️ Stop on Error</Text>
-                <Text className="text-xs text-muted">Halt if activity fails</Text>
+                <Text className="text-base font-semibold text-foreground">⚠️ Stop on Error</Text>
+                <Text className="text-sm text-muted">Halt if activity fails</Text>
               </View>
               <Switch
                 value={config.stopOnError}
@@ -270,8 +270,8 @@ export default function AutomationScreen() {
 
           {/* Activity Logs */}
           {logs.length > 0 && (
-            <View className="gap-2">
-              <Text className="text-base font-semibold text-foreground">Activity Log</Text>
+            <View className="gap-3">
+              <Text className="text-xl font-semibold text-foreground">Activity Log</Text>
               <FlatList
                 data={logs}
                 renderItem={renderLogItem}
@@ -282,18 +282,18 @@ export default function AutomationScreen() {
           )}
 
           {/* Info Box */}
-          <View
-            className="rounded-2xl p-4 gap-2"
-            style={{
-              backgroundColor: colors.surface,
-              borderLeftWidth: 4,
-              borderLeftColor: colors.primary,
-            }}
-          >
-            <Text className="text-sm font-semibold text-foreground">💡 How It Works</Text>
-            <Text className="text-sm text-muted leading-relaxed">
-              The automation engine automatically completes quizzes, surveys, and daily set activities. Each activity is completed with realistic delays to avoid detection. All earned points are recorded in your statistics.
-            </Text>
+            <View
+              className="rounded-2xl p-6 gap-3"
+              style={{
+                backgroundColor: colors.surface,
+                borderLeftWidth: 6,
+                borderLeftColor: colors.primary,
+              }}
+            >
+              <Text className="text-base font-semibold text-foreground">💡 How It Works</Text>
+              <Text className="text-base text-muted leading-relaxed">
+                The automation engine automatically completes quizzes, surveys, and daily set activities. Each activity is completed with realistic delays to avoid detection. All earned points are recorded in your statistics.
+              </Text>
           </View>
         </View>
       </ScrollView>
