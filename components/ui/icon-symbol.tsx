@@ -25,6 +25,7 @@ const MAPPING = {
   "gear": "settings",
   "gift.fill": "card-giftcard",
   "calendar": "event",
+  "chart.line.uptrend.xyaxis": "trending-up",
 } as IconMapping;
 
 /**
