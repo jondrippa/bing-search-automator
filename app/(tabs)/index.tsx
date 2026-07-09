@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
 import * as Haptics from "expo-haptics";
+import { AccountHealthCard } from "@/components/account-health-card";
 
 interface SearchState {
   isSearching: boolean;
@@ -118,6 +119,9 @@ export default function HomeScreen() {
             <Text className="text-sm text-muted">Automator</Text>
           </View>
 
+          {/* Account Health Card */}
+          <AccountHealthCard />
+
           {/* Status Card */}
           <View className="bg-surface rounded-2xl p-6 border border-border gap-3">
             <View className="flex-row items-center justify-between">
@@ -200,24 +204,33 @@ export default function HomeScreen() {
             </View>
           )}
 
-          {/* Logs */}
-          <View className="bg-surface rounded-xl p-4 border border-border gap-2">
-            <Text className="text-xs font-semibold text-muted uppercase">Activity Log</Text>
-            {logs.length > 0 ? (
-              logs.map((log, idx) => (
-                <Text key={idx} className="text-xs text-muted font-mono leading-relaxed">
-                  {log}
-                </Text>
-              ))
-            ) : (
-              <Text className="text-xs text-muted italic">No activity yet</Text>
-            )}
-          </View>
+          {/* Activity Log */}
+          {logs.length > 0 && (
+            <View className="bg-surface rounded-xl p-4 border border-border gap-2">
+              <Text className="text-sm font-semibold text-foreground">Activity Log</Text>
+              <ScrollView style={{ maxHeight: 150 }}>
+                {logs.map((log, idx) => (
+                  <Text key={idx} className="text-xs text-muted font-mono mb-1">
+                    {log}
+                  </Text>
+                ))}
+              </ScrollView>
+            </View>
+          )}
 
-          {/* Info Banner */}
-          <View className="bg-warning/10 rounded-lg p-4 border border-warning gap-2">
-            <Text className="text-xs font-semibold text-warning">⚠️ Anti-Detection Active</Text>
-            <Text className="text-xs text-muted leading-relaxed">
+          {/* Info Box */}
+          <View
+            className="rounded-2xl p-4 gap-2"
+            style={{
+              backgroundColor: colors.surface,
+              borderLeftWidth: 4,
+              borderLeftColor: colors.primary,
+            }}
+          >
+            <Text className="text-sm font-semibold text-foreground">
+              ⚠️ Anti-Detection Active
+            </Text>
+            <Text className="text-sm text-muted leading-relaxed">
               This app uses randomized delays and localized searches to avoid account bans. Always use responsibly.
             </Text>
           </View>
