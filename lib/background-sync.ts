@@ -1,6 +1,7 @@
 import * as TaskManager from "expo-task-manager";
 import * as BackgroundFetch from "expo-background-fetch";
 import { MicrosoftOAuthService } from "./microsoft-oauth";
+import { createBingRewardsClient } from "./bing-rewards-client";
 import { trpc } from "./trpc";
 
 const BACKGROUND_SYNC_TASK = "background-sync-bing-rewards";
@@ -31,19 +32,36 @@ export async function registerBackgroundSyncTask() {
           return BackgroundFetch.BackgroundFetchResult.Failed;
         }
 
-        // Fetch Bing Rewards data
-        const bingData = await MicrosoftOAuthService.getBingRewardsData(
-          (token as any).accessToken
-        );
+        // Create Bing Rewards client and fetch data
+        const client = createBingRewardsClient((token as any).accessToken);
 
-        if (bingData) {
-          // Update metrics in database
-          // This would typically call your backend API
-          console.log("Background sync completed:", bingData);
-          return BackgroundFetch.BackgroundFetchResult.NewData;
+        // Fetch metrics and opportunities in parallel
+        const [metrics, opportunities, dailyStats] = await Promise.all([
+          client.getMetrics(),
+          client.getOpportunities(),
+          client.getDailyStats(
+            new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+            new Date().toISOString().split("T")[0]
+          ),
+        ]);
+
+        // Update database with fetched data
+        if (metrics) {
+          console.log("Updated metrics:", metrics);
+          // TODO: Call backend API to store metrics
         }
 
-        return BackgroundFetch.BackgroundFetchResult.NoData;
+        if (opportunities && opportunities.length > 0) {
+          console.log("Updated opportunities:", opportunities.length);
+          // TODO: Call backend API to store opportunities
+        }
+
+        if (dailyStats && dailyStats.length > 0) {
+          console.log("Updated daily stats:", dailyStats.length);
+          // TODO: Call backend API to store daily stats
+        }
+
+        return BackgroundFetch.BackgroundFetchResult.NewData;
       } catch (error) {
         console.error("Background sync error:", error);
         return BackgroundFetch.BackgroundFetchResult.Failed;

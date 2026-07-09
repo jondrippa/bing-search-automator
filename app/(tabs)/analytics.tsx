@@ -1,15 +1,19 @@
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
 import { ScreenContainer } from '@/components/screen-container';
 import { analyticsService, type AnalyticsMetrics, type TrendData } from '@/lib/analytics-service';
 import { useColors } from '@/hooks/use-colors';
+import { SkeletonStats, SkeletonChart } from '@/components/skeleton-loader';
+import { ErrorState } from '@/components/error-state';
 
 export default function AnalyticsScreen() {
   const colors = useColors();
   const [metrics, setMetrics] = useState<AnalyticsMetrics | null>(null);
   const [trendData, setTrendData] = useState<TrendData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [efficiencyAnalysis, setEfficiencyAnalysis] = useState<any>(null);
+  const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d'>('7d');
 
   useEffect(() => {
     loadAnalytics();
@@ -18,23 +22,51 @@ export default function AnalyticsScreen() {
   const loadAnalytics = async () => {
     try {
       setLoading(true);
+      setError(null);
       const metricsData = await analyticsService.getMetrics();
-      const trends = await analyticsService.getTrendData(30);
+      const daysToFetch = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
+      const trends = await analyticsService.getTrendData(daysToFetch);
       const efficiency = await analyticsService.getEfficiencyAnalysis();
       setMetrics(metricsData);
       setTrendData(trends);
       setEfficiencyAnalysis(efficiency);
     } catch (error) {
       console.error('Error loading analytics:', error);
+      setError(error instanceof Error ? error.message : 'Failed to load analytics');
     } finally {
       setLoading(false);
     }
   };
 
-  if (!metrics) {
+  if (error) {
     return (
-      <ScreenContainer className="items-center justify-center">
-        <Text className="text-foreground">Loading analytics...</Text>
+      <ScreenContainer className="bg-background">
+        <ErrorState
+          title="Failed to load analytics"
+          message="We couldn't fetch your analytics data. Please try again."
+          icon="❌"
+          onRetry={loadAnalytics}
+        />
+      </ScreenContainer>
+    );
+  }
+
+  if (loading || !metrics) {
+    return (
+      <ScreenContainer className="bg-background">
+        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}>
+          <View className="p-8 gap-10">
+            <View className="gap-3">
+              <Text className="text-5xl font-bold text-foreground">Analytics</Text>
+              <Text className="text-xl text-muted">Detailed performance insights</Text>
+            </View>
+            <SkeletonStats count={4} />
+            <View className="gap-4">
+              <Text className="text-2xl font-semibold text-foreground">Trends</Text>
+              <SkeletonChart bars={7} />
+            </View>
+          </View>
+        </ScrollView>
       </ScreenContainer>
     );
   }
