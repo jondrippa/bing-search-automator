@@ -9,6 +9,7 @@ import {
   getMostCriticalSuggestion,
   type RecoverySuggestion,
 } from "@/lib/recovery-suggestions";
+import { CountdownProgressBar } from "./countdown-progress-bar";
 
 export function AccountHealthCard() {
   const colors = useColors();
@@ -17,6 +18,7 @@ export function AccountHealthCard() {
   const [suggestions, setSuggestions] = useState<RecoverySuggestion[]>([]);
   const [mostCritical, setMostCritical] = useState<RecoverySuggestion | null>(null);
   const [countdownTime, setCountdownTime] = useState<string>("");
+  const [remainingMs, setRemainingMs] = useState<number>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,6 +39,7 @@ export function AccountHealthCard() {
       // Update countdown
       if (critical) {
         const remaining = getRemainingWaitTime(critical.canResumeAt);
+        setRemainingMs(remaining);
         setCountdownTime(formatWaitTime(remaining));
       }
     }, 1000); // Update every second for countdown
@@ -170,10 +173,10 @@ export function AccountHealthCard() {
         </View>
       )}
 
-      {/* Recovery Suggestion with Countdown */}
+      {/* Recovery Suggestion with Progress Bar */}
       {mostCritical && (
         <View
-          className="rounded-2xl p-4 gap-3"
+          className="rounded-2xl p-4 gap-4"
           style={{
             backgroundColor: colors.surface,
             borderWidth: 2,
@@ -193,22 +196,24 @@ export function AccountHealthCard() {
             </View>
           </View>
 
-          {/* Countdown Timer */}
+          {/* Countdown Progress Bar */}
+          <CountdownProgressBar
+            remainingMs={remainingMs}
+            totalMs={mostCritical.waitTimeMs}
+            label="Safe to Resume In"
+            showPercentage={true}
+          />
+
+          {/* Resume Time Info */}
           <View
             className="rounded-lg p-3 items-center gap-1"
             style={{
               backgroundColor: getSeverityColor(mostCritical.priority),
-              opacity: 0.2,
+              opacity: 0.15,
             }}
           >
-            <Text className="text-xs font-semibold text-foreground">Safe to Resume In</Text>
-            <Text
-              className="text-2xl font-bold font-mono"
-              style={{ color: getSeverityColor(mostCritical.priority) }}
-            >
-              {countdownTime}
-            </Text>
-            <Text className="text-xs text-muted mt-1">
+            <Text className="text-xs text-muted">Estimated Resume Time</Text>
+            <Text className="text-sm font-semibold text-foreground">
               {new Date(mostCritical.canResumeAt).toLocaleString()}
             </Text>
           </View>
