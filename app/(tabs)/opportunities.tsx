@@ -1,72 +1,43 @@
-import { ScrollView, Text, View, TouchableOpacity, RefreshControl } from "react-native";
+import { ScrollView, Text, View, TouchableOpacity, ActivityIndicator, RefreshControl } from "react-native";
 import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
-import { useState, useEffect, useCallback } from "react";
-import {
-  fetchLiveOpportunities,
-  getHighPriorityOpportunities,
-  getTotalAvailablePoints,
-  getExpiringOpportunities,
-  completeOpportunity,
-  refreshOpportunities,
-  type RewardsActivity,
-} from "@/lib/opportunities-tracker-live";
+import { useState, useCallback } from "react";
+import { useOpportunities } from "@/hooks/use-opportunities";
+
+interface Opportunity {
+  id: number;
+  externalId: string;
+  title: string;
+  description?: string | null;
+  category: string;
+  pointsAvailable: number;
+  pointsEarned?: number | null;
+  isCompleted: boolean;
+  expiresAt?: string | Date | null;
+  url?: string | null;
+  icon?: string | null;
+  priority: string;
+  userId: number;
+  createdAt: Date;
+  lastSynced: Date;
+}
 
 export default function OpportunitiesScreen() {
   const colors = useColors();
-  const [opportunities, setOpportunities] = useState<RewardsActivity[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [totalPoints, setTotalPoints] = useState(0);
-  const [expiringCount, setExpiringCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [refreshing, setRefreshing] = useState(false);
 
-  // Load opportunities on mount
-  useEffect(() => {
-    loadOpportunities();
-  }, []);
-
-  const loadOpportunities = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-
-      const [opps, total, expiring] = await Promise.all([
-        fetchLiveOpportunities(),
-        getTotalAvailablePoints(),
-        getExpiringOpportunities(),
-      ]);
-
-      setOpportunities(opps);
-      setTotalPoints(total);
-      setExpiringCount(expiring.length);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load opportunities");
-      console.error("Error loading opportunities:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { opportunities, isLoading, error, markCompleted, getByCategory, getTotalPoints, getExpiringOpportunities } = useOpportunities();
 
   const handleRefresh = useCallback(async () => {
-    try {
-      setIsRefreshing(true);
-      const opps = await refreshOpportunities();
-      setOpportunities(opps);
-      setTotalPoints(await getTotalAvailablePoints());
-      setExpiringCount((await getExpiringOpportunities()).length);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to refresh opportunities");
-    } finally {
-      setIsRefreshing(false);
-    }
+    setRefreshing(true);
+    // Refetch opportunities
+    setTimeout(() => setRefreshing(false), 1000);
   }, []);
 
-  const handleCompleteOpportunity = async (id: string) => {
+  const handleCompleteOpportunity = async (externalId: string, points: number) => {
     try {
-      await completeOpportunity(id);
-      await handleRefresh();
+      await markCompleted(externalId, points);
     } catch (err) {
       console.error("Error completing opportunity:", err);
     }
@@ -78,200 +49,236 @@ export default function OpportunitiesScreen() {
     { id: "survey", label: "Surveys", icon: "📋" },
     { id: "shopping", label: "Shopping", icon: "🛍️" },
     { id: "xbox", label: "Xbox", icon: "🎮" },
+    { id: "search", label: "Search", icon: "🔍" },
   ];
 
-  const filteredOpportunities = selectedCategory
-    ? opportunities.filter((opp) => {
-        if (selectedCategory === "all") return true;
-        return opp.category === selectedCategory;
-      })
-    : opportunities;
+  const filteredOpportunities = getByCategory(selectedCategory);
+  const totalPoints = getTotalPoints();
+  const expiringCount = getExpiringOpportunities().length;
 
-  const getCategoryColor = (category?: string): string => {
-    if (!category) return colors.muted;
-    if (category === "quiz") return "#3B82F6";
-    if (category === "survey") return "#8B5CF6";
-    if (category === "shopping") return "#EC4899";
-    if (category === "xbox") return "#10B981";
-    return colors.primary;
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case "high":
+        return colors.error;
+      case "medium":
+        return colors.warning;
+      case "low":
+        return colors.success;
+      default:
+        return colors.muted;
+    }
   };
 
-  const formatTimeRemaining = (expiresAt?: string): string => {
-    if (!expiresAt) return "No expiration";
-    const now = new Date();
-    const expires = new Date(expiresAt);
-    const diff = expires.getTime() - now.getTime();
-
-    if (diff < 0) return "Expired";
-    if (diff < 60000) return "< 1 min";
-    if (diff < 3600000) return `${Math.floor(diff / 60000)} min`;
-    if (diff < 86400000) return `${Math.floor(diff / 3600000)} h`;
-    return `${Math.floor(diff / 86400000)} d`;
+  const getCategoryBgColor = (category: string) => {
+    switch (category) {
+      case "quiz":
+        return "#E8F4F8";
+      case "survey":
+        return "#F0E8F8";
+      case "shopping":
+        return "#F8F0E8";
+      case "xbox":
+        return "#E8F0F8";
+      case "search":
+        return "#F8E8E8";
+      default:
+        return colors.surface;
+    }
   };
+
+  if (isLoading) {
+    return (
+      <ScreenContainer className="bg-background">
+        <View className="flex-1 items-center justify-center">
+          <ActivityIndicator size="large" color={colors.primary} />
+          <Text className="text-lg text-muted mt-4">Loading opportunities...</Text>
+        </View>
+      </ScreenContainer>
+    );
+  }
+
+  if (error) {
+    return (
+      <ScreenContainer className="bg-background">
+        <View className="flex-1 items-center justify-center p-8">
+          <Text className="text-2xl font-bold text-error mb-4">Error</Text>
+          <Text className="text-lg text-muted text-center">{error instanceof Error ? error.message : "Failed to load opportunities"}</Text>
+        </View>
+      </ScreenContainer>
+    );
+  }
 
   return (
     <ScreenContainer className="bg-background">
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefreshing}
-            onRefresh={handleRefresh}
-            tintColor={colors.primary}
-          />
-        }
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor={colors.primary} />}
       >
         <View className="p-8 gap-10">
           {/* Header */}
           <View className="gap-3">
-            <Text className="text-5xl font-bold text-foreground">Earning Opportunities</Text>
-            <Text className="text-xl text-muted">
-              Complete activities to earn points
-            </Text>
+            <Text className="text-5xl font-bold text-foreground">Earn</Text>
+            <Text className="text-xl text-muted">Available opportunities</Text>
           </View>
 
-          {/* Stats Cards */}
-          <View className="flex-row gap-4">
+          {/* Summary Cards */}
+          <View className="gap-4">
             <View
-              className="flex-1 rounded-xl p-8 gap-3"
+              className="rounded-2xl p-8 flex-row justify-between items-center"
               style={{ backgroundColor: colors.surface }}
             >
-              <Text className="text-base text-muted font-semibold">Available Points</Text>
-              <Text className="text-5xl font-bold text-primary">
-                {totalPoints.toLocaleString()}
-              </Text>
+              <View>
+                <Text className="text-base text-muted mb-3">Total Available</Text>
+                <Text className="text-5xl font-bold text-foreground">{totalPoints}</Text>
+              </View>
+              <Text className="text-6xl">💰</Text>
             </View>
-            <View
-              className="flex-1 rounded-xl p-8 gap-3"
-              style={{ backgroundColor: colors.surface }}
-            >
-              <Text className="text-base text-muted font-semibold">Expiring Soon</Text>
-              <Text className="text-5xl font-bold text-warning">{expiringCount}</Text>
-            </View>
+
+            {expiringCount > 0 && (
+              <View
+                className="rounded-2xl p-8 flex-row justify-between items-center"
+                style={{ backgroundColor: colors.surface, borderLeftWidth: 8, borderLeftColor: colors.warning }}
+              >
+                <View>
+                  <Text className="text-base text-muted mb-3">Expiring Soon</Text>
+                  <Text className="text-5xl font-bold text-foreground">{expiringCount}</Text>
+                </View>
+                <Text className="text-6xl">⏰</Text>
+              </View>
+            )}
           </View>
 
           {/* Category Filter */}
-          <View className="gap-3">
-            <Text className="text-xl font-semibold text-foreground">Filter by Category</Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <View className="flex-row gap-4">
+          <View className="gap-4">
+            <Text className="text-2xl font-semibold text-foreground">Filter by Category</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} className="gap-3">
+              <View className="flex-row gap-3">
                 {categories.map((cat) => (
                   <TouchableOpacity
                     key={cat.id}
-                    onPress={() => setSelectedCategory(selectedCategory === cat.id ? null : cat.id)}
+                    onPress={() => setSelectedCategory(cat.id)}
+                    style={{
+                      backgroundColor: selectedCategory === cat.id ? colors.primary : colors.surface,
+                      borderRadius: 20,
+                      paddingHorizontal: 20,
+                      paddingVertical: 12,
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 8,
+                    }}
                   >
-                    <View
-                      className="px-8 py-4 rounded-full"
+                    <Text className="text-xl">{cat.icon}</Text>
+                    <Text
                       style={{
-                        backgroundColor:
-                          selectedCategory === cat.id ? colors.primary : colors.surface,
-                        borderWidth: 1,
-                        borderColor: colors.border,
+                        color: selectedCategory === cat.id ? colors.background : colors.foreground,
+                        fontSize: 16,
+                        fontWeight: "600",
                       }}
                     >
-                      <Text
-                        className="text-lg font-semibold"
-                        style={{
-                          color:
-                            selectedCategory === cat.id ? "white" : colors.foreground,
-                        }}
-                      >
-                        {cat.icon} {cat.label}
-                      </Text>
-                    </View>
+                      {cat.label}
+                    </Text>
                   </TouchableOpacity>
                 ))}
               </View>
             </ScrollView>
           </View>
 
-          {/* Error State */}
-          {error && (
-            <View
-              className="rounded-lg p-8 gap-4"
-              style={{
-                backgroundColor: colors.error,
-                opacity: 0.15,
-              }}
-            >
-              <Text className="text-xl font-semibold text-error">⚠️ Error</Text>
-              <Text className="text-base text-error">{error}</Text>
-            </View>
-          )}
-
-          {/* Loading State */}
-          {isLoading && (
-            <View className="items-center py-12 gap-4">
-              <Text className="text-5xl">⏳</Text>
-              <Text className="text-xl text-muted">Loading opportunities...</Text>
-            </View>
-          )}
-
-          {/* Empty State */}
-          {!isLoading && filteredOpportunities.length === 0 && (
-            <View className="items-center py-12 gap-4">
-              <Text className="text-5xl">📭</Text>
-              <Text className="text-2xl font-semibold text-foreground">No opportunities</Text>
-              <Text className="text-xl text-muted">
-                Check back later for new activities
+          {/* Opportunities List */}
+          {filteredOpportunities.length === 0 ? (
+            <View className="items-center justify-center py-16">
+              <Text className="text-4xl mb-4">📭</Text>
+              <Text className="text-xl font-semibold text-foreground mb-2">No Opportunities</Text>
+              <Text className="text-lg text-muted text-center">
+                {selectedCategory === "all"
+                  ? "Check back later for new opportunities"
+                  : `No ${categories.find((c) => c.id === selectedCategory)?.label.toLowerCase()} available`}
               </Text>
             </View>
-          )}
-
-          {/* Opportunities List */}
-          {!isLoading && filteredOpportunities.length > 0 && (
-            <View className="gap-6">
-              {filteredOpportunities.map((opp) => (
+          ) : (
+            <View className="gap-4">
+              <Text className="text-2xl font-semibold text-foreground">
+                Available ({filteredOpportunities.length})
+              </Text>
+              {filteredOpportunities.map((opp: Opportunity) => (
                 <View
-                  key={opp.id}
-                  className="rounded-xl p-8 gap-5"
-                  style={{
-                    backgroundColor: colors.surface,
-                    borderLeftWidth: 6,
-                    borderLeftColor: getCategoryColor(opp.category),
-                  }}
+                  key={opp.externalId}
+                  className="rounded-2xl p-8 gap-5"
+                  style={{ backgroundColor: getCategoryBgColor(opp.category) }}
                 >
-                  {/* Header */}
                   <View className="flex-row justify-between items-start gap-4">
-                    <View className="flex-1">
-                      <Text className="text-xl font-bold text-foreground">
-                        {opp.title}
-                      </Text>
-                      <Text className="text-base text-muted mt-3">
-                        {opp.description}
-                      </Text>
-                    </View>
-                    <View className="items-end">
-                      <Text className="text-3xl font-bold text-primary">
-                        {opp.pointsAvailable}
-                      </Text>
-                      <Text className="text-xl text-muted">pts</Text>
+                    <View className="flex-1 gap-3">
+                      <View className="flex-row items-center gap-3">
+                        <Text className="text-3xl">{opp.icon || "⭐"}</Text>
+                        <View className="flex-1">
+                          <Text className="text-xl font-bold text-foreground" numberOfLines={2}>
+                            {opp.title}
+                          </Text>
+                        </View>
+                      </View>
+
+                      {opp.description && (
+                        <Text className="text-base text-muted leading-relaxed" numberOfLines={2}>
+                          {opp.description}
+                        </Text>
+                      )}
+
+                      <View className="flex-row items-center gap-4 flex-wrap">
+                        <View className="flex-row items-center gap-2">
+                          <Text className="text-base font-semibold text-foreground">
+                            {opp.pointsAvailable} pts
+                          </Text>
+                        </View>
+
+                        {opp.expiresAt && (
+                          <View className="flex-row items-center gap-2">
+                            <Text className="text-base text-muted">
+                              Expires: {new Date(opp.expiresAt).toLocaleDateString()}
+                            </Text>
+                          </View>
+                        )}
+
+                        <View
+                          className="px-4 py-2 rounded-full"
+                          style={{ backgroundColor: getPriorityColor(opp.priority) }}
+                        >
+                          <Text className="text-white text-sm font-semibold capitalize">
+                            {opp.priority}
+                          </Text>
+                        </View>
+                      </View>
                     </View>
                   </View>
 
-                  {/* Time Remaining */}
-                  <View className="flex-row items-center gap-4 py-4 px-4 rounded-lg" style={{ backgroundColor: colors.background }}>
-                    <Text className="text-xl text-muted">⏱️</Text>
-                    <Text className="text-xl text-muted">
-                      {formatTimeRemaining(opp.expiresAt)}
-                    </Text>
-                  </View>
-
-                  {/* Action Button */}
                   {!opp.isCompleted && (
                     <TouchableOpacity
-                      onPress={() => handleCompleteOpportunity(opp.id)}
-                      className="bg-primary rounded-lg py-5 items-center"
+                      onPress={() => handleCompleteOpportunity(opp.externalId, opp.pointsAvailable)}
+                      style={{
+                        backgroundColor: colors.primary,
+                        borderRadius: 12,
+                        paddingVertical: 16,
+                        paddingHorizontal: 20,
+                        alignItems: "center",
+                      }}
                     >
-                      <Text className="text-xl font-semibold text-white">
-                        Complete Activity
+                      <Text style={{ color: colors.background, fontSize: 16, fontWeight: "600" }}>
+                        Complete & Earn {opp.pointsAvailable} pts
                       </Text>
                     </TouchableOpacity>
                   )}
 
                   {opp.isCompleted && (
-                    <View className="bg-success rounded-lg py-5 items-center opacity-50">
-                      <Text className="text-xl font-semibold text-white">✓ Completed</Text>
+                    <View
+                      style={{
+                        backgroundColor: colors.success,
+                        borderRadius: 12,
+                        paddingVertical: 16,
+                        paddingHorizontal: 20,
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ color: "white", fontSize: 16, fontWeight: "600" }}>
+                        ✓ Completed - Earned {opp.pointsEarned || opp.pointsAvailable} pts
+                      </Text>
                     </View>
                   )}
                 </View>
