@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bing Rewards Automator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Bing Rewards</h1>
+      <p class="subtitle">Automator</p>
+    </div>
+
+    <!-- Status Display -->
+    <div class="status-card">
+      <div class="status-badge" id="statusBadge">Idle</div>
+      <p class="status-text" id="statusText">Ready to start searching</p>
+    </div>
+
+    <!-- Counters -->
+    <div class="counters">
+      <div class="counter-item">
+        <span class="counter-label">Points</span>
+        <span class="counter-value" id="pointsCounter">0</span>
+      </div>
+      <div class="counter-divider"></div>
+      <div class="counter-item">
+        <span class="counter-label">Searches</span>
+        <span class="counter-value" id="searchCounter">0/12</span>
+      </div>
+    </div>
+
+    <!-- Mode Selection -->
+    <div class="mode-selector">
+      <button class="mode-btn active" data-mode="desktop">PC Search</button>
+      <button class="mode-btn" data-mode="mobile">Mobile Search</button>
+    </div>
+
+    <!-- Control Buttons -->
+    <div class="controls">
+      <button id="startAutoBtn" class="btn btn-primary">Start Automatic</button>
+      <button id="startManualBtn" class="btn btn-secondary">Start Manual (1)</button>
+      <button id="stopBtn" class="btn btn-danger" style="display: none;">Stop</button>
+    </div>
+
+    <!-- Settings Link -->
+    <div class="footer">
+      <a href="options.html" target="_blank" class="settings-link">⚙️ Settings</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+# Project TODO
+
+## Microsoft Edge Extension
+
+- [ ] Implement Manifest V3 service worker for background tasks.
+- [ ] Adapt original script logic for Manifest V3 compatibility.
+- [ ] Create extension popup UI with status, counters, and controls.
+- [ ] Implement anti-detection measures (variable delays, user-agent spoofing, referrer control).
+- [ ] Integrate localized trending searches.
+- [ ] Implement manual and automatic search modes.
+- [ ] Develop settings page for configuration.
+- [ ] Optimize file according to MS Edge manifest to avoid detection and account ban.
+
+## Android Mobile App
+
+- [ ] Set up basic Expo React Native project structure.
+- [ ] Design and implement Home Screen (Dashboard) with status, counters, and controls.
+- [ ] Implement manual and automatic search functionality.
+- [ ] Integrate localized trending searches.
+- [ ] Implement anti-detection measures for mobile (similar to extension, adapted for mobile context).
+- [ ] Create Settings Screen for configuration.
+- [ ] Implement light theme UI.
+- [ ] Display points and search counters.
+- [ ] Ensure app prioritizes not to ban account use.
+- [ ] Base searches on IP address and local trending searches.
+
+## General
+
+- [ ] Refine UI/UX for both platforms based on design documents.
+- [ ] Conduct thorough testing for functionality and anti-detection.
+- [ ] Prepare documentation for both the extension and the app.
+- [ ] Generate custom app icon and update `app.config.ts`.
+# Project TODO
+
+## Microsoft Edge Extension
+
+- [x] Implement Manifest V3 service worker for background tasks.
+- [x] Adapt original script logic for Manifest V3 compatibility.
+- [x] Create extension popup UI with status, counters, and controls.
+- [x] Implement anti-detection measures (variable delays, user-agent spoofing, referrer control).
+- [x] Integrate localized trending searches.
+- [x] Implement manual and automatic search modes.
+- [x] Develop settings page for configuration.
+- [x] Optimize file according to MS Edge manifest to avoid detection and account ban.
+
+## Android Mobile App
+
+- [x] Set up basic Expo React Native project structure.
+- [x] Design and implement Home Screen (Dashboard) with status, counters, and controls.
+- [x] Implement manual and automatic search functionality.
+- [x] Integrate localized trending searches (via IP-based API).
+- [x] Implement anti-detection measures for mobile (variable delays, randomized keywords).
+- [x] Create Settings Screen for configuration.
+- [x] Implement light theme UI.
+- [x] Display points and search counters.
+- [x] Ensure app prioritizes not to ban account use.
+- [x] Base searches on IP address and local trending searches.
+
+## General
+
+- [x] Refine UI/UX for both platforms based on design documents.
+- [x] Prepare documentation for both the extension and the app.
+- [ ] Generate custom app icon and update `app.config.ts`.
+- [ ] Conduct thorough testing for functionality and anti-detection.

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bing Rewards Automator - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Settings</h1>
+    
+    <div class="settings-section">
+      <h2>Rewards Tier</h2>
+      <div class="form-group">
+        <label>
+          <input type="radio" name="tier" value="member"> Member (3 PC, 2 Mobile)
+        </label>
+        <label>
+          <input type="radio" name="tier" value="silver"> Silver (6 PC, 4 Mobile)
+        </label>
+        <label>
+          <input type="radio" name="tier" value="gold" checked> Gold (12 PC, 20 Mobile)
+        </label>
+        <label>
+          <input type="radio" name="tier" value="legacy"> Legacy (30 PC, 20 Mobile)
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h2>Search Interval (seconds)</h2>
+      <div class="form-group">
+        <label>Min: <input type="number" id="minInterval" value="15" min="5" max="60"></label>
+        <label>Max: <input type="number" id="maxInterval" value="32" min="5" max="120"></label>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h2>Anti-Detection</h2>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="enableUserAgentRotation" checked>
+          Rotate User-Agent
+        </label>
+        <label>
+          <input type="checkbox" id="enableLocalizedSearch" checked>
+          Use Localized Searches
+        </label>
+        <label>
+          <input type="checkbox" id="strictCooldown">
+          Enable 15-min Cooldown (every 3 searches)
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <button id="saveBtn" class="btn-primary">Save Settings</button>
+      <button id="resetBtn" class="btn-secondary">Reset to Defaults</button>
+    </div>
+
+    <p class="info-text">⚠️ These settings are automatically optimized to avoid account bans. Modify with caution.</p>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
