@@ -8,6 +8,8 @@ import "react-native-reanimated";
 import { Platform } from "react-native";
 import "@/lib/_core/nativewind-pressable";
 import { ThemeProvider } from "@/lib/theme-provider";
+import { notificationService } from "@/lib/notification-service";
+import { opportunityMonitor } from "@/lib/opportunity-monitor";
 import {
   SafeAreaFrameContext,
   SafeAreaInsetsContext,
@@ -36,6 +38,24 @@ export default function RootLayout() {
   // Initialize Manus runtime for cookie injection from parent container
   useEffect(() => {
     initManusRuntime();
+  }, []);
+
+  // Initialize notifications and opportunity monitoring
+  useEffect(() => {
+    const initializeNotifications = async () => {
+      try {
+        await notificationService.initialize();
+        await opportunityMonitor.startMonitoring();
+      } catch (error) {
+        console.error("Error initializing notifications:", error);
+      }
+    };
+
+    initializeNotifications();
+
+    return () => {
+      opportunityMonitor.stopMonitoring();
+    };
   }, []);
 
   const handleSafeAreaUpdate = useCallback((metrics: Metrics) => {
