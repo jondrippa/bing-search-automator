@@ -24,6 +24,7 @@ const MAPPING = {
   "chevron.right": "chevron-right",
   "gear": "settings",
   "gift.fill": "card-giftcard",
+  "calendar": "event",
 } as IconMapping;
 
 /**
