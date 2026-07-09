@@ -19,6 +19,7 @@ const MAPPING = {
   "chart.bar.fill": "bar-chart",
   "star.fill": "star",
   "bolt.fill": "flash-on",
+  "person.fill": "person",
   "chevron.left.forwardslash.chevron.right": "code",
   "chevron.right": "chevron-right",
   "gear": "settings",
