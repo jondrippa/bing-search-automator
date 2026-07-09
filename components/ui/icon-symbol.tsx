@@ -18,6 +18,7 @@ const MAPPING = {
   "paperplane.fill": "send",
   "chart.bar.fill": "bar-chart",
   "star.fill": "star",
+  "bolt.fill": "flash-on",
   "chevron.left.forwardslash.chevron.right": "code",
   "chevron.right": "chevron-right",
   "gear": "settings",
