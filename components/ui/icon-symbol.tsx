@@ -29,7 +29,8 @@ const MAPPING = {
   "star.circle.fill": "stars",
   "list.number": "format-list-numbered",
   "arrow.2.squarepath": "sync",
-} as IconMapping;
+  "clock.fill": "clock",
+} as unknown as IconMapping;
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.

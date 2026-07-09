@@ -99,6 +99,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="background"
+        options={{
+          title: "Schedule",
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="clock.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: "Settings",
