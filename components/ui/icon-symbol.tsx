@@ -26,6 +26,8 @@ const MAPPING = {
   "gift.fill": "card-giftcard",
   "calendar": "event",
   "chart.line.uptrend.xyaxis": "trending-up",
+  "star.circle.fill": "stars",
+  "list.number": "format-list-numbered",
 } as IconMapping;
 
 /**

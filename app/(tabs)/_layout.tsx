@@ -78,6 +78,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="achievements"
+        options={{
+          title: "Achievements",
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.circle.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="leaderboard"
+        options={{
+          title: "Leaderboard",
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.number" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: "Settings",
