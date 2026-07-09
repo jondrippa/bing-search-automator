@@ -6,7 +6,7 @@
 class SyncManager {
   constructor() {
     this.syncData = {
-      userId: this.generateUserId(),
+      userId: null,
       totalPoints: 0,
       totalSearches: 0,
       desktopSearches: 0,
@@ -31,50 +31,75 @@ class SyncManager {
   }
 
   /**
-   * Generate unique user ID
+   * Generate unique user ID using Chrome Storage
    */
-  generateUserId() {
-    const stored = localStorage.getItem('extension_user_id');
-    if (stored) return stored;
-
-    const userId = `ext_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    localStorage.setItem('extension_user_id', userId);
-    return userId;
+  async generateUserId() {
+    return new Promise((resolve) => {
+      chrome.storage.local.get(['extension_user_id'], (result) => {
+        if (result.extension_user_id) {
+          resolve(result.extension_user_id);
+        } else {
+          const userId = `ext_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+          chrome.storage.local.set({ extension_user_id: userId }, () => {
+            resolve(userId);
+          });
+        }
+      });
+    });
   }
 
   /**
    * Initialize sync system
    */
-  initializeSync() {
-    this.loadSyncData();
+  async initializeSync() {
+    // Generate user ID first
+    this.syncData.userId = await this.generateUserId();
+    
+    // Load existing sync data
+    await this.loadSyncData();
+    
+    // Start sync and setup listeners
     this.startSync();
     this.setupMessageListener();
   }
 
   /**
-   * Load sync data from storage
+   * Load sync data from Chrome Storage
    */
   loadSyncData() {
-    try {
-      const stored = localStorage.getItem('extension_sync_data');
-      if (stored) {
-        this.syncData = JSON.parse(stored);
-      }
-    } catch (error) {
-      console.error('Error loading sync data:', error);
-    }
+    return new Promise((resolve) => {
+      chrome.storage.local.get(['extension_sync_data'], (result) => {
+        try {
+          if (result.extension_sync_data) {
+            this.syncData = {
+              ...this.syncData,
+              ...result.extension_sync_data,
+            };
+          }
+          resolve();
+        } catch (error) {
+          console.error('Error loading sync data:', error);
+          resolve();
+        }
+      });
+    });
   }
 
   /**
-   * Save sync data to storage
+   * Save sync data to Chrome Storage
    */
   saveSyncData() {
-    try {
-      localStorage.setItem('extension_sync_data', JSON.stringify(this.syncData));
-      this.recordSyncHistory();
-    } catch (error) {
-      console.error('Error saving sync data:', error);
-    }
+    return new Promise((resolve) => {
+      try {
+        chrome.storage.local.set({ extension_sync_data: this.syncData }, () => {
+          this.recordSyncHistory();
+          resolve();
+        });
+      } catch (error) {
+        console.error('Error saving sync data:', error);
+        resolve();
+      }
+    });
   }
 
   /**
@@ -189,26 +214,28 @@ class SyncManager {
   }
 
   /**
-   * Record sync history
+   * Record sync history using Chrome Storage
    */
   recordSyncHistory() {
-    try {
-      const history = JSON.parse(localStorage.getItem('extension_sync_history') || '[]');
-      history.push({
-        timestamp: new Date().toISOString(),
-        points: this.syncData.totalPoints,
-        searches: this.syncData.totalSearches,
-      });
+    chrome.storage.local.get(['extension_sync_history'], (result) => {
+      try {
+        const history = result.extension_sync_history || [];
+        history.push({
+          timestamp: new Date().toISOString(),
+          points: this.syncData.totalPoints,
+          searches: this.syncData.totalSearches,
+        });
 
-      // Keep only last 100 entries
-      if (history.length > 100) {
-        history.shift();
+        // Keep only last 100 entries
+        if (history.length > 100) {
+          history.shift();
+        }
+
+        chrome.storage.local.set({ extension_sync_history: history });
+      } catch (error) {
+        console.error('Error recording sync history:', error);
       }
-
-      localStorage.setItem('extension_sync_history', JSON.stringify(history));
-    } catch (error) {
-      console.error('Error recording sync history:', error);
-    }
+    });
   }
 
   /**
