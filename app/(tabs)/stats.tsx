@@ -3,6 +3,8 @@ import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
 import { useState, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
+import { SkeletonStats, SkeletonChart } from "@/components/skeleton-loader";
+import { ErrorState } from "@/components/error-state";
 
 interface DailyStats {
   date: string;
@@ -27,8 +29,8 @@ export default function StatsScreen() {
   const [loading, setLoading] = useState(true);
 
   // Fetch real metrics from API
-  const { data: metrics } = trpc.metrics.getMetrics.useQuery();
-  const { data: statsData } = trpc.metrics.getDailyStats.useQuery(
+  const { data: metrics, isLoading: metricsLoading, error: metricsError } = trpc.metrics.getMetrics.useQuery();
+  const { data: statsData, isLoading: statsLoading, error: statsError } = trpc.metrics.getDailyStats.useQuery(
     {
       startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
       endDate: new Date().toISOString().split("T")[0],
@@ -103,13 +105,42 @@ export default function StatsScreen() {
   const maxSearches = Math.max(...dailyStats.map((d) => d.searches), 1);
   const maxPoints = Math.max(...dailyStats.map((d) => d.points), 1);
 
-  if (loading) {
+  const isLoading = metricsLoading || statsLoading;
+  const hasError = metricsError || statsError;
+
+  if (hasError) {
     return (
       <ScreenContainer className="bg-background">
-        <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color={colors.primary} />
-          <Text className="text-lg text-muted mt-4">Loading statistics...</Text>
-        </View>
+        <ErrorState
+          title="Failed to load statistics"
+          message="We couldn't fetch your statistics. Please check your connection and try again."
+          icon="❌"
+          onRetry={() => window.location.reload()}
+        />
+      </ScreenContainer>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <ScreenContainer className="bg-background">
+        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}>
+          <View className="p-8 gap-10">
+            <View className="gap-3">
+              <Text className="text-5xl font-bold text-foreground">Statistics</Text>
+              <Text className="text-xl text-muted">Last 7 days overview</Text>
+            </View>
+            <SkeletonStats count={3} />
+            <View className="gap-4">
+              <Text className="text-2xl font-semibold text-foreground">Daily Activity</Text>
+              <SkeletonChart bars={7} />
+            </View>
+            <View className="gap-4">
+              <Text className="text-2xl font-semibold text-foreground">Points Trend</Text>
+              <SkeletonChart bars={7} />
+            </View>
+          </View>
+        </ScrollView>
       </ScreenContainer>
     );
   }

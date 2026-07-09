@@ -86,3 +86,19 @@
 - [x] Replace mock data in Stats screen with real data.
 - [x] Replace mock data in Earn screen with real data.
 - [ ] Test data fetching and authentication flows.
+
+
+# Microsoft OAuth and Profile Management
+
+- [x] Create loading skeleton components for Stats and Earn screens
+- [x] Create error state UI component
+- [x] Integrate loading skeletons into Stats screen
+- [x] Integrate loading skeletons into Earn screen
+- [x] Implement Microsoft OAuth login flow
+- [x] Create Microsoft token storage and refresh logic
+- [x] Create user profile screen
+- [x] Add Microsoft account connection/disconnection UI
+- [x] Implement background sync task for metrics
+- [x] Implement background sync task for opportunities
+- [ ] Test Microsoft OAuth flow end-to-end
+- [ ] Test background sync functionality

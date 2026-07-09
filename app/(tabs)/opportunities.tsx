@@ -3,6 +3,8 @@ import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
 import { useState, useCallback } from "react";
 import { useOpportunities } from "@/hooks/use-opportunities";
+import { SkeletonCard, SkeletonStats } from "@/components/skeleton-loader";
+import { ErrorState, EmptyState } from "@/components/error-state";
 
 interface Opportunity {
   id: number;
@@ -42,6 +44,41 @@ export default function OpportunitiesScreen() {
       console.error("Error completing opportunity:", err);
     }
   };
+
+  if (error) {
+    return (
+      <ScreenContainer className="bg-background">
+        <ErrorState
+          title="Failed to load opportunities"
+          message="We couldn't fetch your opportunities. Please check your connection and try again."
+          icon="❌"
+          onRetry={handleRefresh}
+        />
+      </ScreenContainer>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <ScreenContainer className="bg-background">
+        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}>
+          <View className="p-8 gap-10">
+            <View className="gap-3">
+              <Text className="text-5xl font-bold text-foreground">Earn</Text>
+              <Text className="text-xl text-muted">Available opportunities</Text>
+            </View>
+            <SkeletonStats count={2} />
+            <View className="gap-4">
+              <Text className="text-2xl font-semibold text-foreground">Opportunities</Text>
+              {Array.from({ length: 3 }).map((_, i) => (
+                <SkeletonCard key={i} lines={2} />
+              ))}
+            </View>
+          </View>
+        </ScrollView>
+      </ScreenContainer>
+    );
+  }
 
   const categories = [
     { id: "all", label: "All", icon: "📊" },
@@ -86,27 +123,7 @@ export default function OpportunitiesScreen() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <ScreenContainer className="bg-background">
-        <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color={colors.primary} />
-          <Text className="text-lg text-muted mt-4">Loading opportunities...</Text>
-        </View>
-      </ScreenContainer>
-    );
-  }
 
-  if (error) {
-    return (
-      <ScreenContainer className="bg-background">
-        <View className="flex-1 items-center justify-center p-8">
-          <Text className="text-2xl font-bold text-error mb-4">Error</Text>
-          <Text className="text-lg text-muted text-center">{error instanceof Error ? error.message : "Failed to load opportunities"}</Text>
-        </View>
-      </ScreenContainer>
-    );
-  }
 
   return (
     <ScreenContainer className="bg-background">
@@ -185,15 +202,15 @@ export default function OpportunitiesScreen() {
 
           {/* Opportunities List */}
           {filteredOpportunities.length === 0 ? (
-            <View className="items-center justify-center py-16">
-              <Text className="text-4xl mb-4">📭</Text>
-              <Text className="text-xl font-semibold text-foreground mb-2">No Opportunities</Text>
-              <Text className="text-lg text-muted text-center">
-                {selectedCategory === "all"
+            <EmptyState
+              title="No Opportunities"
+              message={
+                selectedCategory === "all"
                   ? "Check back later for new opportunities"
-                  : `No ${categories.find((c) => c.id === selectedCategory)?.label.toLowerCase()} available`}
-              </Text>
-            </View>
+                  : `No ${categories.find((c) => c.id === selectedCategory)?.label.toLowerCase()} available`
+              }
+              icon="📭"
+            />
           ) : (
             <View className="gap-4">
               <Text className="text-2xl font-semibold text-foreground">
