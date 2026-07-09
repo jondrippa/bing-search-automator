@@ -17,6 +17,7 @@ const MAPPING = {
   "house.fill": "home",
   "paperplane.fill": "send",
   "chart.bar.fill": "bar-chart",
+  "star.fill": "star",
   "chevron.left.forwardslash.chevron.right": "code",
   "chevron.right": "chevron-right",
   "gear": "settings",
