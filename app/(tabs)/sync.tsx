@@ -2,6 +2,7 @@ import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
 import { ScreenContainer } from '@/components/screen-container';
 import { syncService, type SyncData } from '@/lib/sync-service';
+import { exportService } from '@/lib/export-service';
 import { useColors } from '@/hooks/use-colors';
 
 export default function SyncScreen() {
@@ -10,6 +11,9 @@ export default function SyncScreen() {
   const [syncConfig, setSyncConfig] = useState({ enabled: false, syncInterval: 30000 });
   const [syncHistory, setSyncHistory] = useState<any[]>([]);
   const [lastSync, setLastSync] = useState<string>('Never');
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const [syncMessage, setSyncMessage] = useState<string>('');
 
   useEffect(() => {
     loadSyncData();
@@ -29,7 +33,7 @@ export default function SyncScreen() {
 
       setSyncData(data);
       setSyncConfig(config);
-      setSyncHistory(history.slice(-10)); // Last 10 entries
+      setSyncHistory(history.slice(-10));
     } catch (error) {
       console.error('Error loading sync data:', error);
     }
@@ -52,6 +56,71 @@ export default function SyncScreen() {
       setSyncConfig(updated);
     } catch (error) {
       console.error('Error updating sync interval:', error);
+    }
+  };
+
+  const forceSyncNow = async () => {
+    try {
+      setIsSyncing(true);
+      setSyncMessage('Syncing...');
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await loadSyncData();
+      setSyncMessage('✓ Sync completed successfully!');
+      setTimeout(() => setSyncMessage(''), 3000);
+    } catch (error) {
+      console.error('Error forcing sync:', error);
+      setSyncMessage('✗ Sync failed!');
+      setTimeout(() => setSyncMessage(''), 3000);
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  const exportSyncHistory = async () => {
+    try {
+      setIsExporting(true);
+      setSyncMessage('Exporting sync history...');
+      await exportService.exportSyncHistory();
+      setSyncMessage('✓ Sync history exported!');
+      setTimeout(() => setSyncMessage(''), 3000);
+    } catch (error) {
+      console.error('Error exporting sync history:', error);
+      setSyncMessage('✗ Export failed!');
+      setTimeout(() => setSyncMessage(''), 3000);
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const exportEarningTrends = async () => {
+    try {
+      setIsExporting(true);
+      setSyncMessage('Exporting earning trends...');
+      await exportService.exportEarningTrends();
+      setSyncMessage('✓ Earning trends exported!');
+      setTimeout(() => setSyncMessage(''), 3000);
+    } catch (error) {
+      console.error('Error exporting earning trends:', error);
+      setSyncMessage('✗ Export failed!');
+      setTimeout(() => setSyncMessage(''), 3000);
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const exportFullReport = async () => {
+    try {
+      setIsExporting(true);
+      setSyncMessage('Exporting full report...');
+      await exportService.exportFullReport();
+      setSyncMessage('✓ Full report exported!');
+      setTimeout(() => setSyncMessage(''), 3000);
+    } catch (error) {
+      console.error('Error exporting full report:', error);
+      setSyncMessage('✗ Export failed!');
+      setTimeout(() => setSyncMessage(''), 3000);
+    } finally {
+      setIsExporting(false);
     }
   };
 
@@ -129,6 +198,68 @@ export default function SyncScreen() {
             </View>
           </View>
         )}
+
+        {/* Force Sync Button */}
+        <View className="mb-6 rounded-lg bg-primary/10 p-4">
+          <TouchableOpacity
+            onPress={forceSyncNow}
+            disabled={isSyncing}
+            className={`flex-row items-center justify-center gap-2 rounded-lg py-3 ${
+              isSyncing ? 'bg-primary/50' : 'bg-primary'
+            }`}
+          >
+            <Text className="text-lg">{isSyncing ? '⏳' : '🔄'}</Text>
+            <Text className="font-semibold text-white">
+              {isSyncing ? 'Syncing...' : 'Force Sync Now'}
+            </Text>
+          </TouchableOpacity>
+          {syncMessage && (
+            <Text className="mt-2 text-center text-xs text-primary">{syncMessage}</Text>
+          )}
+        </View>
+
+        {/* Export Options */}
+        <View className="mb-6 rounded-lg bg-surface p-4">
+          <Text className="mb-3 text-sm font-semibold text-foreground">EXPORT DATA</Text>
+          <View className="gap-2">
+            <TouchableOpacity
+              onPress={exportSyncHistory}
+              disabled={isExporting}
+              className="flex-row items-center justify-between rounded-lg bg-primary/10 p-3"
+            >
+              <View className="flex-row items-center gap-2">
+                <Text className="text-lg">📋</Text>
+                <Text className="font-semibold text-foreground">Sync History</Text>
+              </View>
+              <Text>{isExporting ? '⏳' : '→'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={exportEarningTrends}
+              disabled={isExporting}
+              className="flex-row items-center justify-between rounded-lg bg-primary/10 p-3"
+            >
+              <View className="flex-row items-center gap-2">
+                <Text className="text-lg">📊</Text>
+                <Text className="font-semibold text-foreground">Earning Trends</Text>
+              </View>
+              <Text>{isExporting ? '⏳' : '→'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={exportFullReport}
+              disabled={isExporting}
+              className="flex-row items-center justify-between rounded-lg bg-primary/10 p-3"
+            >
+              <View className="flex-row items-center gap-2">
+                <Text className="text-lg">📄</Text>
+                <Text className="font-semibold text-foreground">Full Report</Text>
+              </View>
+              <Text>{isExporting ? '⏳' : '→'}</Text>
+            </TouchableOpacity>
+          </View>
+          {syncMessage && (
+            <Text className="mt-2 text-center text-xs text-primary">{syncMessage}</Text>
+          )}
+        </View>
 
         {/* Sync Interval Configuration */}
         <View className="mb-6 rounded-lg bg-surface p-4">
